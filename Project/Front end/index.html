@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Semantic Data Web Lab - Integration of I4.0 Standards</title>
+		<link rel="stylesheet" href="style.css" type="text/css">
+		<script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script src="http://d3js.org/d3.v3.min.js"></script>
+		<script src="tree_visualization.js"></script>
+		<script src="file_upload.js"></script>
+	</head>
+	<body ng-app = "IntegrationOfI40">
+		<div class="top">
+			<h1>Integration of I4.0 Standards</h1>
+			<br><div class="authors"> Alina Arunova, Maxim Maltsev, Philipp Matyash, Sattar Rahimbeyli.
+			<br><div class="mentor"> <u>Mentor</u>: Irlán Grangel. </div></div>
+		</div>
+		<div class="content">
+			<div ng-controller = "myCtrl">
+				<input type = "file" file-model = "myFile"/>
+				<button ng-click = "uploadFile()">Upload</button>
+			</div>
+			<script>
+				var myApp = angular.module('myApp', []);
+         
+         myApp.directive('fileModel', ['$parse', function ($parse) {
+            return {
+               restrict: 'A',
+               link: function(scope, element, attrs) {
+                  var model = $parse(attrs.fileModel);
+                  var modelSetter = model.assign;
+                  
+                  element.bind('change', function(){
+                     scope.$apply(function(){
+                        modelSetter(scope, element[0].files[0]);
+                     });
+                  });
+               }
+            };
+         }]);
+      
+         myApp.service('fileUpload', ['$http', function ($http) {
+            this.uploadFileToUrl = function(file, uploadUrl){
+               var fd = new FormData();
+               fd.append('file', file);
+            
+               $http.post(uploadUrl, fd, {
+                  transformRequest: angular.identity,
+                  headers: {'Content-Type': undefined}
+               })
+            
+               .success(function(){
+               })
+            
+               .error(function(){
+               });
+            }
+         }]);
+      
+         myApp.controller('myCtrl', ['$scope', 'fileUpload', function($scope, fileUpload){
+            $scope.uploadFile = function(){
+               var file = $scope.myFile;
+               
+               console.log('file is ' );
+               console.dir(file);
+               
+               var uploadUrl = "/fileUpload";
+               fileUpload.uploadFileToUrl(file, uploadUrl);
+            };
+         }]);
+			</script>
+			<div class="chart1"></div>
+			<p>
+			<p>
+			<p>
+			<br><a href="ab">Download AML_file.XML</a>
+			<script type="text/javascript">
+				drawTree("Drawing1", ".chart1", "treeData.json");
+			</script>			
+		</div>
+		<div class="floor">
+			<a target="_blank" href="https://www.uni-bonn.de/news-1?set_language=en"><img src="http://www.ilr.uni-bonn.de/images/unilogo.jpg" /></a>
+		</div>
+	</body>
+</html>

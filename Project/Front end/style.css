@@ -13,9 +13,10 @@ div.mentor {
 	text-align: right;
 }
 div.content {
+	text-align: center;
 	margin-top: 3%;
 	margin-left: 20%;
-	margin-right: 20%
+	margin-right: 20%;
 }
 div.floor {
 	position: fixed;
