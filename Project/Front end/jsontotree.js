@@ -1,7 +1,7 @@
-function drawTree(drawingName, selectString, treeData) {
+function drawTree(selectString, treeData, maxDepth, maxWidth) {
 	var margin = {top: 20, right: 120, bottom: 20, left: 120},
-		width = 1960 - margin.right - margin.left,
-		height = 1800 - margin.top - margin.bottom;
+		width = maxWidth*400 - margin.right - margin.left,
+		height = maxDepth*50 - margin.top - margin.bottom;
 		
 	var i = 0,
 		duration = 750,
@@ -12,7 +12,7 @@ function drawTree(drawingName, selectString, treeData) {
 		.children(function(d) { return d.children; });
 	
 	var diagonal = d3.svg.diagonal()
-		.projection(function(d) { return [d.x, d.y]; });
+		.projection(function(d) { return [d.y, d.x]; });
 	
 	var svg = d3.select("body").append("svg")
 		.attr("width", width + margin.right + margin.left)
@@ -46,7 +46,7 @@ function drawTree(drawingName, selectString, treeData) {
 		links = tree.links(nodes);
 	
 	// Normalize for fixed-depth.
-	nodes.forEach(function(d) { d.y = d.depth * 180; });
+	nodes.forEach(function(d) { d.y = d.depth * 240; });
 	
 	// Update the nodes…
 	var node = svg.selectAll("g.node")
@@ -63,31 +63,69 @@ function drawTree(drawingName, selectString, treeData) {
 		.style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
 	
 	function wordwrap2(text) {
-	return text.split(" ")
+		return text.split(" ")
 	}   
 	
 	nodeEnter.append("text")
 	.attr("x", function(d) { return d.children || d._children ? -10 : 10; })
 	.attr("dy", ".35em")
-	.attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
+	//.attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
 	.style("fill-opacity", 1e-6)
 	.each(function (d) {
-		if (d.name!=undefined) {
-			var lines = wordwrap2(d.name)
-			for (var i = 0; i < lines.length; i++) {
+		//var lines = wordwrap2(d.name)
+		var lines = [];
+		var index = 0;
+		if (d.value) {
+			lines[index] = d.value;
+			index += 1;
+		}
+		if (d.name) {
+			lines[index] = d.name;
+			index += 1;
+		}
+		if (d.extra) {
+			lines[index] = d.extra;
+			index += 1;
+		}
+		if (d.type) {
+			lines[index] = d.type;
+			index += 1;
+		}
+		if (!index) {
+			lines[index] = "UnknownNode";
+		}
+		for (var i = 0; i < lines.length; i++) {
+			if (i == 0) { // if that's the first line - make it bold
+				/*if (d.value != "" && d.value != undefined) {
+					d3.select(this).append("tspan")
+						.attr("style", "font-weight: bold")
+						.attr("dy",23)
+						.attr("x",function(d) { 
+							return d.children || d._children ? -10 : 10; })
+						.text(lines[i] + " \"" + d.value + "\"")
+				}/ else {*/
+					d3.select(this).append("tspan")
+						.attr("style", "font-weight: bold")
+						.attr("dy",23)
+						.attr("x",function(d) { 
+							return d.children || d._children ? -10 : 10; })
+						.text(lines[i])
+				//}
+			} else { // otherwise small font
 				d3.select(this).append("tspan")
+					.attr("style", "font: 8px sans-serif;")
 					.attr("dy",13)
 					.attr("x",function(d) { 
 						return d.children || d._children ? -10 : 10; })
 					.text(lines[i])
 			}
-			}
+		}
 	}); 
 	
 	// Transition nodes to their new position.
 	var nodeUpdate = node.transition()
 		.duration(duration)
-		.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+		.attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
 	
 	nodeUpdate.select("circle")
 		.attr("r", 4.5)

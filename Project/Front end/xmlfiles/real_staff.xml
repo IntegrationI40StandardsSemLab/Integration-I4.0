@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CAEXFile FileName="Topology.aml" SchemaVersion="2.15" xsi:noNamespaceSchemaLocation="./Source/CAEX_ClassModel_V2.15.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<AdditionalInformation AutomationMLVersion="2.0"/>
+	<AdditionalInformation>
+		<WriterHeader>
+			<WriterName>AutomationML e.V.</WriterName>
+			<WriterID>AutomationML e.V.</WriterID>
+			<WriterVendor>AutomationML e.V.</WriterVendor>
+			<WriterVendorURL>www.AutomationML.org</WriterVendorURL>
+			<WriterVersion>1.0</WriterVersion>
+			<WriterRelease>1.0</WriterRelease>
+			<LastWritingDateTime>2012-02-20 </LastWritingDateTime>
+			<WriterProjectTitle>AutomationML Tutorial Examples</WriterProjectTitle>
+			<WriterProjectID>AutomationML Tutorial Examples </WriterProjectID>
+		</WriterHeader>
+	</AdditionalInformation>
+	<ExternalReference Path="Libs/RoleClass Libraries/AutomationMLBaseRoleClassLib.aml" Alias="BaseRoleClassLib"/>
+	<ExternalReference Path="Libs/InterfaceClass Libraries/AutomationMLInterfaceClassLib.aml" Alias="BaseInterfaceClassLib"/>
+	<InstanceHierarchy Name="ManufacturingSystem">
+	<InternalElement Name="firstScrewdriver" ID="{788eb291-f103-4fdc-aba0-4893b599f556}" RefBaseSystemUnitPath="LibOfCommonTools/ElectricScrewdriver">
+		<Attribute Name="New Attribute"/>
+		<ExternalInterface Name="EnergySupply" ID="{5f535d4c-dd46-4c1c-898c-4e58419048b6}" RefBaseClassPath="MyInterfaces/Energy"/>
+		<SupportedRoleClass RefRoleClassPath="ManufacturingRoleClasses/Tool"/>
+		<RoleRequirements RefBaseRoleClassPath="ManufacturingRoleClasses/Tool"/>
+	</InternalElement>
+<InternalElement Name="secondScrewdriver" ID="{19dcf818-4716-4fc1-a85f-28e1938c4c3a}" RefBaseSystemUnitPath="LibOfCommonTools/ElectricScrewdriver">
+<ExternalInterface Name="EnergySupply" ID="50e10905-ac18-413c-afab-ad8ed1569fff" RefBaseClassPath="MyInterfaces/Energy"/>
+<SupportedRoleClass RefRoleClassPath="ManufacturingRoleClasses/Tool"/>
+<RoleRequirements RefBaseRoleClassPath="ManufacturingRoleClasses/Tool"/>
+</InternalElement>
+</InstanceHierarchy>
+<InterfaceClassLib Name="MyInterfaces">
+<Version>1.0</Version>
+<InterfaceClass Name="Energy" RefBaseClassPath="BaseInterfaceClassLib@AutomationMLInterfaceClassLib/AutomationMLBaseInterface"/>
+</InterfaceClassLib>
+<RoleClassLib Name="ManufacturingRoleClasses">
+<Version>1.0</Version>
+<RoleClass Name="Tool" RefBaseClassPath="BaseRoleClassLib@AutomationMLBaseRoleClassLib/AutomationMLBaseRole"/>
+</RoleClassLib>
+<SystemUnitClassLib Name="LibOfCommonTools">
+<Version>1.0</Version>
+<SystemUnitClass Name="ElectricScrewdriver">
+<ExternalInterface Name="EnergySupply" ID="dd0e0dfe-10f8-4068-845b-9c29699ac79b" RefBaseClassPath="MyInterfaces/Energy"/>
+<SupportedRoleClass RefRoleClassPath="ManufacturingRoleClasses/Tool"/>
+</SystemUnitClass>
+</SystemUnitClassLib>
+</CAEXFile>
+<References>
+<Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+<Reference ReferenceType="Organizes" IsForward="false">ns=1;i=5005</Reference>
+<Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=25</Reference>
+<Reference ReferenceType="HasComponent">ns=2;i=8</Reference>
+<Reference ReferenceType="HasComponent">ns=2;i=10</Reference>
+</References>
+</UAObject>
+<UAObject NodeId="ns=2;i=2" BrowseName="MyInterfaces">
+<DisplayName>MyInterfaces</DisplayName>
+<Description></Description>
+<References>
+<Reference ReferenceType="HasProperty">ns=2;i=3</Reference>
+<Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+<Reference ReferenceType="Organizes" IsForward="false">ns=1;i=5008</Reference>
+<Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=28</Reference>
+<Reference ReferenceType="ns=1;i=4002">ns=2;i=17</Reference>
+</References>
+</UAObject>
+<UAObject NodeId="ns=2;i=4" BrowseName="ManufacturingRoleClasses">
+<DisplayName>ManufacturingRoleClasses</DisplayName>
+<Description></Description>
+<References>
+<Reference ReferenceType="HasProperty">ns=2;i=5</Reference>
+<Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+<Reference ReferenceType="Organizes" IsForward="false">ns=1;i=5009</Reference>
+<Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=27</Reference>
+<Reference ReferenceType="ns=1;i=4002">ns=2;i=18</Reference>
+</References>
+</UAObject>
+<UAObject NodeId="ns=2;i=6" BrowseName="LibOfCommonTools">
+<DisplayName>LibOfCommonTools</DisplayName>
+<Description></Description>
+<References>
+<Reference ReferenceType="HasProperty">ns=2;i=7</Reference>
+<Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+<Reference ReferenceType="Organizes" IsForward="false">ns=1;i=5010</Reference>
+<Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=26</Reference>
+<Reference ReferenceType="ns=1;i=4002">ns=2;i=19</Reference>
+</References>
+</UAObject>
+<UAObject NodeId="ns=2;i=8" BrowseName="firstScrewdriver">
+<DisplayName>firstScrewdriver</DisplayName>
+<Description></Description>
+<References>
+<Reference ReferenceType="HasProperty">ns=2;i=9</Reference>
+<Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=1</Reference>
+<Reference ReferenceType="HasTypeDefinition">ns=2;i=19</Reference>
+<Reference ReferenceType="ns=1;i=4001">ns=2;i=18</Reference>
+<Reference ReferenceType="ns=1;i=4001">ns=2;i=18</Reference>
+<Reference ReferenceType="HasComponent">ns=2;i=12</Reference>
+<Reference ReferenceType="HasComponent">ns=2;i=13</Reference>
+</References>
+</UAObject>
+<UAObject NodeId="ns=2;i=10" BrowseName="secondScrewdriver">
+<DisplayName>secondScrewdriver</DisplayName>
+<Description></Description>
+<References>
+<Reference ReferenceType="HasProperty">ns=2;i=11</Reference>
+<Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=1</Reference>
+<Reference ReferenceType="HasTypeDefinition">ns=2;i=19</Reference>
+<Reference ReferenceType="ns=1;i=4001">ns=2;i=18</Reference>
+<Reference ReferenceType="ns=1;i=4001">ns=2;i=18</Reference>
+<Reference ReferenceType="HasComponent">ns=2;i=15</Reference>
+</References>
+</UAObject>
+<UAObject NodeId="ns=2;i=13" BrowseName="EnergySupply" ParentNodeId="ns=2;i=8">
+<DisplayName>EnergySupply</DisplayName>
+<Description></Description>
+<References>
+<Reference ReferenceType="HasProperty">ns=2;i=14</Reference>
+<Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=8</Reference>
+<Reference ReferenceType="HasTypeDefinition">ns=2;i=17</Reference>
+</References>
+</UAObject>
+<UAObject NodeId="ns=2;i=15" BrowseName="EnergySupply" ParentNodeId="ns=2;i=10">
+<DisplayName>EnergySupply</DisplayName>
+<Description></Description>
+<References>
+<Reference ReferenceType="HasProperty">ns=2;i=16</Reference>
+<Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=10</Reference>
+<Reference ReferenceType="HasTypeDefinition">ns=2;i=17</Reference>
+</References>
+</UAObject>
+<UAObject NodeId="ns=2;i=20" BrowseName="EnergySupply" ParentNodeId="ns=2;i=19">
+<DisplayName>EnergySupply</DisplayName>
+<Description></Description>
+<References>
+<Reference ReferenceType="HasProperty">ns=2;i=21</Reference>
+<Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=19</Reference>
+<Reference ReferenceType="HasTypeDefinition">ns=2;i=17</Reference>
+</References>
+</UAObject>
+<UAObject NodeId="ns=2;i=22" BrowseName="Topology.aml">
+<DisplayName>Topology.aml</DisplayName>
+<Description></Description>
+<References>
+<Reference ReferenceType="HasTypeDefinition">ns=1;i=1005</Reference>
+<Reference ReferenceType="HasProperty">ns=2;i=23</Reference>
+<Reference ReferenceType="HasProperty">ns=2;i=24</Reference>
+<Reference ReferenceType="HasComponent">ns=2;i=25</Reference>
+<Reference ReferenceType="HasComponent">ns=2;i=26</Reference>
+<Reference ReferenceType="HasComponent">ns=2;i=27</Reference>
+<Reference ReferenceType="HasComponent">ns=2;i=28</Reference>
+<Reference ReferenceType="Organizes" IsForward="false">ns=1;i=5006</Reference>
+</References>
+</UAObject>
+<UAObject NodeId="ns=2;i=25" BrowseName="InstanceHierarchies" ParentNodeId="ns=2;i=22">
+<DisplayName>InstanceHierarchies</DisplayName>
+<References>
+<Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=22</Reference>
+<Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+<Reference ReferenceType="HasComponent">ns=2;i=1</Reference>
+</References>
+</UAObject>
+<UAObject NodeId="ns=2;i=26" BrowseName="SystemUnitClassLibs" ParentNodeId="ns=2;i=22">
+<DisplayName>SystemUnitClassLibs</DisplayName>
+<References>
+<Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=22</Reference>
+<Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+<Reference ReferenceType="HasComponent">ns=2;i=6</Reference>
+</References>
+</UAObject>
+<UAObject NodeId="ns=2;i=27" BrowseName="RoleClassLibs" ParentNodeId="ns=2;i=22">
+<DisplayName>RoleClassLibs</DisplayName>
+<References>
+<Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=22</Reference>
+<Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+<Reference ReferenceType="HasComponent">ns=2;i=4</Reference>
+</References>
+</UAObject>
+<UAObject NodeId="ns=2;i=28" BrowseName="InterfaceClassLibs" ParentNodeId="ns=2;i=22">
+<DisplayName>InterfaceClassLibs</DisplayName>
+<References>
+<Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=22</Reference>
+<Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+<Reference ReferenceType="HasComponent">ns=2;i=2</Reference>
+</References>
+</UAObject>
+<UAVariable NodeId="ns=2;i=3" BrowseName="Version" ParentNodeId="ns=2;i=2" DataType="String">
+<DisplayName>Version</DisplayName>
+<References>
+<Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+</References>
+<Value>
+<String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">1.0</String>
+</Value>
+</UAVariable>
+<UAVariable NodeId="ns=2;i=5" BrowseName="Version" ParentNodeId="ns=2;i=4" DataType="String">
+<DisplayName>Version</DisplayName>
+<References>
+<Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+</References>
+<Value>
+<String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">1.0</String>
+</Value>
+</UAVariable>
+<UAVariable NodeId="ns=2;i=7" BrowseName="Version" ParentNodeId="ns=2;i=6" DataType="String">
+<DisplayName>Version</DisplayName>
+<References>
+<Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+</References>
+<Value>
+<String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">1.0</String>
+</Value>
+</UAVariable>
+<UAVariable NodeId="ns=2;i=9" BrowseName="ID" ParentNodeId="ns=2;i=8" DataType="String">
+<DisplayName>ID</DisplayName>
+<References>
+<Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+</References>
+<Value>
+<String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">{788eb291-f103-4fdc-aba0-4893b599f556}</String>
+</Value>
+</UAVariable>
+<UAVariable NodeId="ns=2;i=11" BrowseName="ID" ParentNodeId="ns=2;i=10" DataType="String">
+<DisplayName>ID</DisplayName>
+<References>
+<Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+</References>
+<Value>
+<String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">{19dcf818-4716-4fc1-a85f-28e1938c4c3a}</String>
+</Value>
+</UAVariable>
+<UAVariable NodeId="ns=2;i=12" BrowseName="New Attribute" ParentNodeId="ns=2;i=8" DataType="String" AccessLevel="15" UserAccessLevel="15">
+<DisplayName>New Attribute</DisplayName>
+<Description></Description>
+<References>
+<Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+<Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=8</Reference>
+</References>
+<Value>
+<String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd" />
+</Value>
+</UAVariable>
+<UAVariable NodeId="ns=2;i=14" BrowseName="ID" ParentNodeId="ns=2;i=13" DataType="String">
+<DisplayName>ID</DisplayName>
+<References>
+<Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+</References>
+<Value>
+<String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">{5f535d4c-dd46-4c1c-898c-4e58419048b6}</String>
+</Value>
+</UAVariable>
+<UAVariable NodeId="ns=2;i=16" BrowseName="ID" ParentNodeId="ns=2;i=15" DataType="String">
+<DisplayName>ID</DisplayName>
+<References>
+<Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+</References>
+<Value>
+<String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">50e10905-ac18-413c-afab-ad8ed1569fff</String>
+</Value>
+</UAVariable>
+<UAVariable NodeId="ns=2;i=21" BrowseName="ID" ParentNodeId="ns=2;i=20" DataType="String">
+<DisplayName>ID</DisplayName>
+<References>
+<Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+</References>
+<Value>
+<String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">dd0e0dfe-10f8-4068-845b-9c29699ac79b</String>
+</Value>
+</UAVariable>
+<UAVariable NodeId="ns=2;i=23" BrowseName="FileName" ParentNodeId="ns=2;i=22" DataType="String">
+<DisplayName>FileName</DisplayName>
+<References>
+<Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+</References>
+<Value>
+<String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">Topology.aml</String>
+</Value>
+</UAVariable>
+<UAVariable NodeId="ns=2;i=24" BrowseName="CAEXSchemaVersion" ParentNodeId="ns=2;i=22" DataType="String">
+<DisplayName>CAEXSchemaVersion</DisplayName>
+<References>
+<Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+</References>
+<Value>
+<String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">2.15</String>
+</Value>
+</UAVariable>
+<UAObjectType NodeId="ns=2;i=17" BrowseName="Energy">
+<DisplayName>Energy</DisplayName>
+<Description></Description>
+<References>
+<Reference ReferenceType="ns=1;i=4002" IsForward="false">ns=2;i=2</Reference>
+<Reference ReferenceType="HasSubtype" IsForward="false">ns=1;i=1001</Reference>
+</References>
+</UAObjectType>
+<UAObjectType NodeId="ns=2;i=18" BrowseName="Tool">
+<DisplayName>Tool</DisplayName>
+<Description></Description>
+<References>
+<Reference ReferenceType="ns=1;i=4002" IsForward="false">ns=2;i=4</Reference>
+<Reference ReferenceType="HasSubtype" IsForward="false">ns=1;i=1001</Reference>
+</References>
+</UAObjectType>
+<UAObjectType NodeId="ns=2;i=19" BrowseName="ElectricScrewdriver">
+<DisplayName>ElectricScrewdriver</DisplayName>
+<Description></Description>
+<References>
+<Reference ReferenceType="ns=1;i=4002" IsForward="false">ns=2;i=6</Reference>
+<Reference ReferenceType="HasSubtype" IsForward="false">ns=1;i=1001</Reference>
+<Reference ReferenceType="ns=1;i=4001">ns=2;i=18</Reference>
+<Reference ReferenceType="HasComponent">ns=2;i=20</Reference>
+</References>
+</UAObjectType>
+</UANodeSet>

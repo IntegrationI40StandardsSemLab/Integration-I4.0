@@ -31,16 +31,16 @@ div > a > img {
 .node {
       cursor: pointer;
     }
-    .node circle {
-      fill: #00008b;
-      stroke: black;
-      stroke-width: 3px;
-    }
-    .node text {
-      font: 8px sans-serif;
-    }
-    .link {
-      fill: none;
-      stroke: #ccc;
-      stroke-width: 2px;
-    }
+.node circle {
+  fill: #00008b;
+  stroke: black;
+  stroke-width: 3px;
+}
+.node text {
+  font: 12px sans-serif;
+}
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 2px;
+}
