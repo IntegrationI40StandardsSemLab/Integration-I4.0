@@ -1,6 +1,6 @@
 <HTML>
 	<head>
-		<link rel="stylesheet" href="style.css" type="text/css">
+		<link rel="stylesheet" href="css/styleM.css" type="text/css">
 		<script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 		<script src="http://d3js.org/d3.v3.min.js"></script>
 		<script src="js/js/xmltojson.js"></script>
@@ -9,7 +9,7 @@
 	<body>
 		<div class="chart1"></div>
 		<script>
-			xmltotree("chart1", "xmlfiles/Opc.Ua.NodeSet2.xml", [], []);
+			xmltotree("chart1", "xmlfiles/ExampleTopology.xml", ["InstanceHierarchy", "InterfaceClassLib", "RoleClassLib", "SystemUnitClassLib"], ["SchemaVersion"]);
 			//["InstanceHierarchy", "InterfaceClassLib", "RoleClassLib", "SystemUnitClassLib"], ["SchemaVersion"]);
 			// xmlfiles: Topology.xml, AnnexA_UANodeSet.xml, AnnexA_CAEXFile.xml, ExampleTopology.xml, xml_test.xml, books.xml
 		</script>
