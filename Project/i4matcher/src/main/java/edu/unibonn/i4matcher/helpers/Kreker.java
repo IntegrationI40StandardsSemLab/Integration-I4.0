@@ -32,9 +32,6 @@ public class Kreker {
                         + XPathConstants.DOM_OBJECT_MODEL,
                 "net.sf.saxon.xpath.XPathFactoryImpl");
 
-        // trying how to implement catalog URI resolution, which would be nice
-        // to have for FXSL
-        // TODO get this right: https://trac.kwarc.info/krextor/ticket/13
         TransformerFactory factory = TransformerFactory.newInstance();
         Configuration saxonConfiguration = new Configuration();
         saxonConfiguration
@@ -49,10 +46,6 @@ public class Kreker {
                 });
         factory.setAttribute(FeatureKeys.CONFIGURATION, saxonConfiguration);
 
-		/*
-	        xPathContext = new XPathContext();
-		xPathContext.addNamespace("rxr", XMLNS_RXR);
-		*/
     }
     public static void krekerize(InputStream aml) {
         try {
