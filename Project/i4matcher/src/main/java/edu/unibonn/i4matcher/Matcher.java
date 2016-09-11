@@ -1,4 +1,4 @@
-package main;
+package edu.unibonn.i4matcher;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;

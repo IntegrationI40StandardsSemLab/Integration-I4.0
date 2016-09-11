@@ -34,7 +34,7 @@ public class XSDValidator {
             Validator validator = this.schema.newValidator();
             validator.validate(new StreamSource(xml));
             System.out.println("Successfully validated");
-
+            if (xml != null) xml.close();
             return true;
         }
         catch(Exception ex)

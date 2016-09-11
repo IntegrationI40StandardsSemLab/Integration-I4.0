@@ -10,11 +10,11 @@ public class DocumentIdentifier {
         Pattern paml = Pattern.compile(".*?\\.aml$");
         Pattern popc = Pattern.compile(".*?\\.opcua$");
         if (popc.matcher(filename).matches()) {
-            return "opcua.xsd";
+            return "opcua";
         }
         if (paml.matcher(filename).matches()){
             System.out.println(filename);
-            return "automationML.xsd";
+            return "automationML";
         }
         else return "nothing";
     }

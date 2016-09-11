@@ -8,6 +8,7 @@ import net.sf.saxon.Configuration;
 import net.sf.saxon.FeatureKeys;
 import net.sf.saxon.om.SequenceIterator;
 
+
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -15,8 +16,11 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.xpath.XPathConstants;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
+import java.io.*;
+import java.net.URL;
+import java.nio.ByteBuffer;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
 
 public class Kreker {
     static {
@@ -47,24 +51,52 @@ public class Kreker {
         factory.setAttribute(FeatureKeys.CONFIGURATION, saxonConfiguration);
 
     }
-    public static void krekerize(InputStream aml) {
+    private static boolean isEqual(InputStream i1, InputStream i2)
+            throws IOException {
+
+        ReadableByteChannel ch1 = Channels.newChannel(i1);
+        ReadableByteChannel ch2 = Channels.newChannel(i2);
+
+        ByteBuffer buf1 = ByteBuffer.allocateDirect(1024);
+        ByteBuffer buf2 = ByteBuffer.allocateDirect(1024);
+
         try {
-            //Document doc = k.generateStylesheet("aml", "java");
-            //Builder builder = new Builder();
-            //DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            //DocumentBuilder builder;
-            //builder = dbf.newDocumentBuilder();
-            //Document ss = builder.parse(new File("/home/phil/Documents/phil/workspace/krekerTest/src/xslt/transform-aml..turtle.xsl"));
-            //System.out.println("preved");
-            //System.out.println(doc.toXML());
+            while (true) {
+
+                int n1 = ch1.read(buf1);
+                int n2 = ch2.read(buf2);
+
+                if (n1 == -1 || n2 == -1) return n1 == n2;
+
+                buf1.flip();
+                buf2.flip();
+
+                for (int i = 0; i < Math.min(n1, n2); i++)
+                    if (buf1.get() != buf2.get())
+                        return false;
+
+                buf1.compact();
+                buf2.compact();
+            }
+
+        } finally {
+            if (i1 != null) i1.close();
+            if (i2 != null) i2.close();
+        }
+    }
+    public static void krekerize(InputStream aml, String schema) { //main (String[] args){ //
+        try {
+
             TransformerFactory tf = TransformerFactory.newInstance();
-
+            System.out.println("EHEHE-EHEHE_EHEHEHEHEHHEH");
             //TODO:change hardcoded schema
-            Transformer transformer = tf.newTransformer(new StreamSource("/home/phil/Documents/phil/workspace/krekerTest/src/xslt/transform-aml..turtle.xsl"));
-            //String aml = "/home/phil/krextor/krextor/test/unit/extract/aml/ExampleTopology.aml";
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            StreamSource xmlSource = new StreamSource(aml);
+            System.out.println(ClassLoader.getSystemResource(schema + "..turtle.xsl").getFile());
 
+            InputStream xsl = ClassLoader.getSystemResource(schema + "..turtle.xsl").openStream();
+            Transformer transformer = tf.newTransformer(new StreamSource(xsl));
+            System.out.println("EHEHE-EHEHE_EHEHEHEHEHHEH");
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            StreamSource xmlSource = new StreamSource( aml);
             transformer.transform( xmlSource, new StreamResult( baos ) );
             String formattedOutput = baos.toString();
             //Nodes nodes = transform.transform(builder.build(aml));
@@ -72,13 +104,27 @@ public class Kreker {
             System.out.println(formattedOutput);
 //            Document out = XSLTransform.toDocument(nodes);
 //            System.out.println(out.toXML());
+//            System.out.println(isEqual(aml1, aml));
 
+            if (aml != null) aml.close();
         } catch (TransformerConfigurationException e) {
             e.printStackTrace();
         } catch (TransformerException e) {
             e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
     }
+    /*
+    public static void main(String[] args) throws FileNotFoundException {
+        InputStream aml1 = new FileInputStream("/home/phil/krextor/krextor/test/unit/extract/aml/ExampleTopology.aml");
+        //URL res = ClassLoader.getSystemResource("automationML" + "..turtle.xsl");
+        krekerize(aml1, "automationML");
+        //ClassLoader classLoader = getClass().getClassLoader();
+
+
+    }*/
 
 }

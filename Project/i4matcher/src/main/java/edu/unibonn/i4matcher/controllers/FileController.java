@@ -57,13 +57,13 @@ public class FileController {
 
 			 try {
 				 String schema = DocumentIdentifier.getFileType(mpf.getOriginalFilename());
-				 XSDValidator validator = new XSDValidator(schema);
+				 XSDValidator validator = new XSDValidator(schema+".xsd");
 				 //
-				 InputStream is = new ByteArrayInputStream(mpf.getBytes());
-				 validator.validateAgainstXSD(is);
+				 //InputStream is = new ByteArrayInputStream(mpf.getBytes());
+				 validator.validateAgainstXSD(new ByteArrayInputStream(mpf.getBytes()));
 				 Kreker pecker = new Kreker();
-				 pecker.krekerize(is);
-				 is.close();
+				 pecker.krekerize(new ByteArrayInputStream(mpf.getBytes()), schema);
+				 //is.close();
 			 } catch (Exception ex){
 				 ex.printStackTrace();
 			 }
