@@ -35,7 +35,7 @@
 	// if everything is ok, try to upload file
 	} else {
 		if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-			echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded. <p> <a href='tree.html?name=". basename( $_FILES["fileToUpload"]["name"]). "' target='_blank'>Visualization</a>";
+			echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded. <p > <a id='build' href='tree.html?name=". basename( $_FILES["fileToUpload"]["name"]). "' target='_blank'>Visualization</a>";
 		} else {
 			echo "<font color='red' size='2'>There was an error uploading your file. </red></font><p><a href='upload.html'>Try again </a>";
 		}

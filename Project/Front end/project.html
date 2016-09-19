@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+  
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
-
+    
     <title>Integration of Industry 4.0 Standards</title>
 
     <!-- Bootstrap core CSS -->
@@ -16,8 +17,9 @@
 
     <!-- Custom styles for this template -->
     <link href="dist/css/carousel.css" rel="stylesheet">
+    <link href="css/project.css" rel="stylesheet">
   </head>
-  <body>
+  <body >
 
     <nav class="navbar navbar-static-top navbar-light bg-faded">
       <ul class="nav navbar-nav">
@@ -30,20 +32,23 @@
       </ul>
     </nav>
 
-	<div class="container marketing">
-	
-	<div style="margin-left:25%; margin-top:3%">
-	<table>
-		<tr><td>
-		<iframe id="file1" style="border-style: none; height:420; width:60;" src="upload.html"></iframe>
-		</td><td>
-		<iframe id="file2" style="border-style: none; height:420; width:60;" src="upload.html"></iframe>
-		</td></tr>
-	</table>
-	</div>
-	
-	
-	<hr class="featurette-divider">
+    <div class="container marketing">
+    
+    <div style="margin-left:25%; margin-top:3%;">
+    <table>
+        <tr><td>
+        <iframe id="file1" style="border-style: none; height:420; width:60;" src="upload.html"></iframe>
+        </td><td>
+        <iframe id="file2" style="border-style: none; height:420; width:60;" src="upload.html"></iframe>
+        </td></tr>
+    </table>
+        <div id="zoneQuery">
+            <button onclick="activation()" class="queryB" style="margin-left:30%;">Query Zone</button>
+        </div>
+    </div>
+    
+    
+    <hr class="featurette-divider">
 
     <!-- FOOTER -->
     <footer>
@@ -64,5 +69,32 @@
     <script src="dist/js/vendor/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="dist/js/ie10-viewport-bug-workaround.js"></script>
+            <script>
+function query()
+{
+$("#zoneQuery").append('<form class="query"><label>Input your query:</label><br /><textarea class="queryField"></textarea><br /><input type="submit" value="Run query"/></form>');
+$(".queryB").hide();
+$(".errorMes").hide();
+$("#zoneQuery").append('<br><a href="files/integrated.aml" download>Download the file</a>');
+}
+            function activation()
+            {
+        $.ajax({
+              type: 'GET',
+              url: 'activate.php?action=sample2',
+              success: function(data){
+                if(data==1)
+                {
+                    query();
+                }
+                else
+                {
+                    $("#zoneQuery").append('<p class="errorMes">You didnot upload</p>');
+                }
+              }
+            });
+
+            }
+        </script>
   </body>
 </html>
