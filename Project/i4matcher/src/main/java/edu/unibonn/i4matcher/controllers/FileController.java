@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -18,14 +19,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.hp.hpl.jena.rdf.model.Model;
+
 import edu.unibonn.i4matcher.model.FileMeta;
 import edu.unibonn.i4matcher.helpers.*;
-
+import edu.unibonn.i4matcher.Matcher;
 @Controller
 @RequestMapping("/controller")
 public class FileController {
-
-	
 	LinkedList<FileMeta> files = new LinkedList<FileMeta>();
 	FileMeta fileMeta = null;
 	/***************************************************
@@ -36,7 +37,7 @@ public class FileController {
 	 * @return LinkedList<FileMeta> as json format
 	 ****************************************************/
 	@RequestMapping(value="/upload", method = RequestMethod.POST)
-	public @ResponseBody LinkedList<FileMeta> upload(MultipartHttpServletRequest request, HttpServletResponse response) {
+	public @ResponseBody String upload(MultipartHttpServletRequest request, HttpServletResponse response) {
  		System.out.println(request.getRequestHeaders().toString());
 		//1. build an iterator
 		 Iterator<String> itr =  request.getFileNames();
@@ -53,32 +54,39 @@ public class FileController {
 			 fileMeta = new FileMeta();
 			 fileMeta.setFileName(mpf.getOriginalFilename());
 			 fileMeta.setFileSize(mpf.getSize()/1024+" Kb");
-			 fileMeta.setFileType(mpf.getContentType());
+             try {
+                 fileMeta.setBytes(mpf.getBytes());
+             } catch (IOException e) {
+                 // TODO Auto-generated catch block
+                 e.printStackTrace();
+             }
 
 			 try {
 				 String schema = DocumentIdentifier.getFileType(mpf.getOriginalFilename());
 				 XSDValidator validator = new XSDValidator(schema+".xsd");
-				 //
+                 fileMeta.setFileType(schema);
 				 //InputStream is = new ByteArrayInputStream(mpf.getBytes());
-				 validator.validateAgainstXSD(new ByteArrayInputStream(mpf.getBytes()));
+                 System.out.println(fileMeta.getBytes().length);
+				 validator.validateAgainstXSD(new ByteArrayInputStream(fileMeta.getBytes()));
 				 Kreker pecker = new Kreker();
-				 pecker.krekerize(new ByteArrayInputStream(mpf.getBytes()), schema);
+				 byte[] ttl = pecker.krekerize(new ByteArrayInputStream(fileMeta.getBytes()), schema);
+                 fileMeta.setTtl(ttl);
 				 //is.close();
 			 } catch (Exception ex){
 				 ex.printStackTrace();
 			 }
 
-			 try {
-				fileMeta.setBytes(mpf.getBytes());
-//
-			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			 files.add(fileMeta);
 			 
 		 }
-		return files;
+        Matcher matcher = new Matcher();
+        try {
+            Model model = matcher.match2Files(files);
+            return model.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "500";
  
 	}
 	/***************************************************

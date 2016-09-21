@@ -10,7 +10,8 @@ public class FileMeta {
 	private String fileType;
 	
 	private byte[] bytes;
-	
+	private byte[] ttl;
+
 	public String getFileName() {
 		return fileName;
 	}
@@ -35,4 +36,11 @@ public class FileMeta {
 	public void setBytes(byte[] bytes) {
 		this.bytes = bytes;
 	}
+	public byte[] getTtl() {
+		return ttl;
+	}
+	public void setTtl(byte[] ttl) {
+		this.ttl = ttl;
+	}
+
 }
