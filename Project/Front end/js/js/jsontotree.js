@@ -26,7 +26,7 @@ function drawTree(selectString, treeData, maxDepth, maxWidth) {
 	root.y0 = 0;
 	
 	function collapse(d) {
-		if (d.children) {
+		if (d.children.length) {
 		d._children = d.children;
 		d._children.forEach(collapse);
 		d.children = null;
@@ -60,7 +60,9 @@ function drawTree(selectString, treeData, maxDepth, maxWidth) {
 	
 	nodeEnter.append("circle")
 		.attr("r", 1e-6)
-		.style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+		.style("fill", function(d) { 
+			return d._children ? "lightsteelblue" : "#fff"; 
+		}); //#fff
 	
 	function wordwrap2(text) {
 		return text.split(" ")
@@ -129,7 +131,9 @@ function drawTree(selectString, treeData, maxDepth, maxWidth) {
 	
 	nodeUpdate.select("circle")
 		.attr("r", 4.5)
-		.style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+		.style("fill", function(d) { 
+			return d._children ? "lightsteelblue" : "#fff"; 
+		}); //#fff
 	
 	nodeUpdate.select("text")
 		.style("fill-opacity", 1);
