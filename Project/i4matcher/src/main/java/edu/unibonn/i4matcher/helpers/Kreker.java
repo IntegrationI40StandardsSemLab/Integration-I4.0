@@ -113,16 +113,20 @@ public class Kreker {
         }
         return new byte[0];
     }
-/*
-    public static void main(String[] args) throws FileNotFoundException {
-        InputStream aml1 = new FileInputStream("/home/phil/krextor/krextor/test/unit/extract/aml/ExampleTopology.aml");
+
+    public static void main(String[] args) throws IOException {
+        InputStream aml1 = new FileInputStream("C:\\Users\\alink_000\\Desktop\\Uni Bonn\\Lab semantic\\AutomationML Whitepaper - OPCUAforAutomationML_Mar2016/Topology.xml");
         //URL res = ClassLoader.getSystemResource("automationML" + "..turtle.xsl");
+        //System.out.println(aml1.read());
         Kreker kreker = new Kreker();
-        byte[] out = kreker.krekerize(aml1, "automationML");
-        System.out.print(out);
+        byte[] out = kreker.krekerize(aml1, "opcua");
+        FileOutputStream fos = new FileOutputStream("out.txt");
+        fos.write(out);
+
+        System.out.print("oke");
         //ClassLoader classLoader = getClass().getClassLoader();
 
 
-    }*/
+    }
 
 }
