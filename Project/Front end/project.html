@@ -72,7 +72,7 @@
             <script>
 function query()
 {
-$("#zoneQuery").append('<form class="query"><label>Input your query:</label><br /><textarea class="queryField"></textarea><br /><input type="submit" value="Run query"/></form>');
+$("#zoneQuery").append('<form class="query"><label>Input your query:</label><br /><textarea class="queryField">SELECT ?name WHERE { ?person foaf:name ?name . }</textarea><br /><input type="submit" value="Run query"/></form>');
 $(".queryB").hide();
 $(".errorMes").hide();
 $("#zoneQuery").append('<br><a href="files/integrated.aml" download>Download the file</a>');
