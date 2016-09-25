@@ -75,6 +75,15 @@
 			<artifactId>jena</artifactId>
 			<version>2.6.4</version>
 		</dependency>
+		<dependency>
+			<groupId>virtuoso.jena.driver</groupId>
+			<artifactId>virtjena</artifactId>
+			<version>2.6</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/virt_jena.jar</systemPath>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.jena/jena-arq -->
+
 
 
 	</dependencies>
@@ -93,7 +102,11 @@
 				  <artifactId>maven-jetty-plugin</artifactId>        
 				  <version>6.1.10</version>        
 				  <configuration>
-					<scanIntervalSeconds>10</scanIntervalSeconds>                  
+					<scanIntervalSeconds>10</scanIntervalSeconds>
+					  <webAppConfig>
+						  <contextPath>/i4Matcher</contextPath>
+						  <extraClasspath>${project.basedir}/lib/jenajars/arq.jar;${project.basedir}/lib/virtjdbc3.jar</extraClasspath>
+					  </webAppConfig>
 				  </configuration>        
 			  </plugin>
 			  <plugin>
