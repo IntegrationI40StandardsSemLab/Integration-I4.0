@@ -1,16 +1,66 @@
-<!DOCTYPE html>
 <html>
 	<head>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-	<script type="text/javascript">
-    
-    </script>    
-    </head>
+		<title>Test upload to browser</title>
+	</head>
 	<body>
-		<form action="upload.php" id="form" method="post" name="form" style="border-style: none; height:420; width:60;" enctype="multipart/form-data">
-			Select .xml/.aml/.opcua file to upload:
-			<p><input type="file" name="fileToUpload" id="fileToUpload1">
-			<p><input type="submit" value="Upload" name="submit" >
-		</form>
+		<script>
+			// Check for the various File API support.
+			if (window.File && window.FileReader && window.FileList && window.Blob) {
+				// Great success! All the File APIs are supported.
+			} else {
+				alert('The File APIs are not fully supported in this browser.');
+			}
+		</script>
+		<div id="content">
+		Select .aml/.opcua file to upload:
+		<p><input type="file" id="file" name="file" />
+		<output id="list"></output>
+		</div>
+			
+		<script>
+			function handleFileSelect(evt) {
+				var file = evt.target.files; // FileList object
+			
+				f = file[0];
+				// Only process aml and opcua files.
+				dotInd = f.name.lastIndexOf('.');
+				type = f.name.substring(dotInd+1, f.name.length+1);
+				if (type == 'aml') {
+					var reader = new FileReader();
+				
+					// Closure to capture the file information.
+					reader.onload = (function(theFile) {
+						return function(e) {
+						// Add links to the file and its visualization.
+						document.getElementById("content").innerHTML = ['<p><a href="tree.html?url=', e.target.result,'" target="_blank" title="Visualization of ', escape(theFile.name), 
+						'">Visualization</a><br><a href="', e.target.result,'" download="', escape(theFile.name),'">Download the file</a>'].join('');
+						document.getElementById('list').insertBefore(span, null);
+						};
+					})(f);
+				
+					// Read in the file as a data URL.
+					reader.readAsDataURL(f);
+					alert('The file was saved to Virtuoso, id=x');
+				} else if (type == 'opcua') {
+					var reader = new FileReader();
+				
+					// Closure to capture the file information.
+					reader.onload = (function(theFile) {
+						return function(e) {
+						// Add links to the file and its visualization.
+						document.getElementById("content").innerHTML = ['<p><a href="', e.target.result,'" download="', escape(theFile.name),'">Download the file</a>'].join('');
+						document.getElementById('list').insertBefore(span, null);
+						};
+					})(f);
+				
+					// Read in the file as a data URL.
+					reader.readAsDataURL(f);
+					alert('The file was saved to Virtuoso, id=x');
+				} else {
+					alert ('Error: you should upload either AML or OPCUA file.')
+				}
+			}
+			document.getElementById('file').addEventListener('change', handleFileSelect, false);
+		</script>
 	</body>
 </html>

@@ -1,8 +1,7 @@
 <HTML>
 	<head>
 		<link rel="stylesheet" href="css/tree_style.css" type="text/css">
-		<script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-		<script src="http://d3js.org/d3.v3.min.js"></script>
+		<script src="js/js/d3.js"></script>
 		<script src="js/js/xmltojson.js"></script>
 		<script src="js/js/jsontotree.js"></script>
 	</head>
@@ -11,8 +10,9 @@
 		<script>
 			var url = window.location.href;
 			var ind = url.search("=");
+			//var res = "files/" + url.substring(ind+1, url.length);
 			var res = "files/" + url.substring(ind+1, url.length);
-			xmltotree("chart1", res, ["InstanceHierarchy", "InterfaceClassLib", "SystemUnitClassLib", "RoleClassLib"], ["SchemaVersion"]);
+			xmltotree("chart1", url.substring(ind+1, url.length), ["InstanceHierarchy", "InterfaceClassLib", "SystemUnitClassLib", "RoleClassLib"], ["SchemaVersion"]);
 			// xmlfiles: Topology.xml, AnnexA_UANodeSet.xml, AnnexA_CAEXFile.xml, ExampleTopology.xml, xml_test.xml, books.xml
 		</script>
 	</body>
