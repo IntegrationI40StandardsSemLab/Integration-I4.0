@@ -1,0 +1,19 @@
+<HTML>
+	<head>
+		<link rel="stylesheet" href="css/tree_style.css" type="text/css">
+		<script src="js/js/d3.js"></script>
+		<script src="js/js/xmltojson.js"></script>
+		<script src="js/js/jsontotree.js"></script>
+	</head>
+	<body>
+		<div class="chart1"></div>
+		<script>
+			var url = window.location.href;
+			var ind = url.search("=");
+			//var res = "files/" + url.substring(ind+1, url.length);
+			var res = "files/" + url.substring(ind+1, url.length);
+			xmltotree("chart1", url.substring(ind+1, url.length), ["InstanceHierarchy", "InterfaceClassLib", "SystemUnitClassLib", "RoleClassLib"], ["SchemaVersion"]);
+			// xmlfiles: Topology.xml, AnnexA_UANodeSet.xml, AnnexA_CAEXFile.xml, ExampleTopology.xml, xml_test.xml, books.xml
+		</script>
+	</body>
+</HTML>
