@@ -19,7 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.hp.hpl.jena.rdf.model.Model;
+//import com.hp.hpl.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.Model;
 
 import edu.unibonn.i4matcher.model.FileMeta;
 import edu.unibonn.i4matcher.helpers.*;
@@ -66,7 +67,7 @@ public class FileController {
 				 XSDValidator validator = new XSDValidator(schema+".xsd");
                  fileMeta.setFileType(schema);
 				 //InputStream is = new ByteArrayInputStream(mpf.getBytes());
-                 System.out.println(fileMeta.getBytes().length);
+
 				 validator.validateAgainstXSD(new ByteArrayInputStream(fileMeta.getBytes()));
 				 Kreker pecker = new Kreker();
 				 byte[] ttl = pecker.krekerize(new ByteArrayInputStream(fileMeta.getBytes()), schema);
@@ -82,7 +83,10 @@ public class FileController {
         Matcher matcher = new Matcher();
         try {
             Model model = matcher.match2Files(files);
-            return model.toString();
+            TripleStoreWriter writer = new TripleStoreWriter();
+            String ret = writer.write(model);
+            System.out.println(ret);
+            return ret;
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,25 +1,20 @@
 $(function () {
+	console.log("hello1");
     $('#fileupload').fileupload({
-        dataType: 'json',
-        
+        //dataType: 'json',
+		autoUpload: true,
+		add: function(e, data) {
+			alert(data.type);
+		},
         done: function (e, data) {
-        	$("tr:has(td)").remove();
-            $.each(data.result, function (index, file) {
-            	
-            	
-                $("#uploaded-files").append(
-                		$('<tr/>')
-                		.append($('<td/>').text(file.fileName))
-                		.append($('<td/>').text(file.fileSize))
-                		.append($('<td/>').text(file.fileType))
-                		.append($('<td/>').html("<a href='rest/controller/get/"+index+"'>Click</a>"))
-                		)//end $("#uploaded-files").append()
-            }); 
+			console.log(data);
+			console.log("hello");
+			alert("Success");
         },
-        
+
         progressall: function (e, data) {
 	        var progress = parseInt(data.loaded / data.total * 100, 10);
-	        $('#progress .bar').css(
+	        $('#progress.bar').css(
 	            'width',
 	            progress + '%'
 	        );

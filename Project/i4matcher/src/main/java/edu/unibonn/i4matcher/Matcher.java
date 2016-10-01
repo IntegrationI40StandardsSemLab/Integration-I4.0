@@ -1,9 +1,10 @@
 package edu.unibonn.i4matcher;
 
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.Statement;
-import com.hp.hpl.jena.rdf.model.StmtIterator;
+//import com.hp.hpl.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.Statement;
+import org.apache.jena.rdf.model.StmtIterator;
 import edu.unibonn.i4matcher.model.FileMeta;
 
 import java.io.*;
