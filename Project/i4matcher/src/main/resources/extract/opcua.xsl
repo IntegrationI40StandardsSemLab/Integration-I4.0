@@ -4,7 +4,7 @@
 <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
 <!ENTITY dc "http://purl.org/dc/elements/1.1/">
-<!ENTITY aml "https://w3id.org/i40/aml/">
+<!ENTITY opcua "https://w3id.org/i40/opcua/">
 <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
 <!ENTITY schema "http://schema.org/">
 ]>
@@ -26,7 +26,7 @@
       <xsl:apply-imports>
         <xsl:with-param
           name="krextor:base-uri"
-          select="xs:anyURI('https://w3id.org/i40/aml/')"
+          select="xs:anyURI('https://w3id.org/i40/opcua/')"
           as="xs:anyURI"
           tunnel="yes"/>
       </xsl:apply-imports>
@@ -53,35 +53,33 @@
  
  
 <xsl:variable name="krextor:resources">
-	<UANodeSet type="&aml;UANodeSet"/>
+	<UANodeSet type="&opcua;UANodeSet"/>
 
-	<NamespaceUris type="&aml;NamespaceUris" related-via-properties="&aml;hasNamespaceUris"/>
+	<NamespaceUris type="&opcua;NamespaceUris" related-via-properties="&opcua;hasNamespaceUris"/>
 	
-	<Aliases type="&aml;Aliases" related-via-properties="&aml;hasAliases"/>
+	<Aliases type="&opcua;Aliases" related-via-properties="&opcua;hasAliases"/>
 	
-	<UAObject type="&aml;UAObject" related-via-properties="&aml;hasUAObject"/>
+	<UAObject type="&opcua;UAObject" related-via-properties="&opcua;hasUAObject"/>
 	
-	<UAVariable type="&aml;UAVariable" related-via-properties="&aml;hasUAVariable"/>
+	<UAVariable type="&opcua;UAVariable" related-via-properties="&opcua;hasUAVariable"/>
 	
-	<UAObjectType type="&aml;UAObjectType" related-via-properties="&aml;hasUAObjectType"/>
+	<UAObjectType type="&opcua;UAObjectType" related-via-properties="&opcua;hasUAObjectType"/>
 
-	<Alias type="&aml;Alias" related-via-properties="&aml;hasAlias"/>
+	<Alias type="&opcua;Alias" related-via-properties="&opcua;hasAlias"/>
 
-	<Uri type="&aml;Uri" related-via-properties="&aml;hasUri"/>
+	<Uri type="&opcua;Uri" related-via-properties="&opcua;hasUri"/>
 
-	<DisplayName type="&aml;DisplayName" related-via-properties="&aml;hasDisplayName"/>
+	<DisplayName type="&opcua;DisplayName" related-via-properties="&opcua;hasDisplayName"/>
 
-	<Descriprion type="&aml;Description" related-via-properties="&aml;hasDescription"/>
+	<Descriprion type="&opcua;Description" related-via-properties="&opcua;hasDescription"/>
 
-	<References type="&aml;References" related-via-properties="&aml;hasReferences"/>
+	<References type="&opcua;References" related-via-properties="&opcua;hasReferences"/>
 
-	<Reference type="&aml;Reference" related-via-properties="&aml;hasReference"/>
+	<Reference type="&opcua;Reference" related-via-properties="&opcua;hasReference"/>
 
-	<Value type="&aml;Value" related-via-properties="&aml;hasValue"/>
+	<Value type="&opcua;Value" related-via-properties="&opcua;hasValue"/>
 
-	<String type="&aml;String" related-via-properties="&aml;hasString"/>
-
-
+	<String type="&opcua;String" related-via-properties="&opcua;hasString"/>
 
 </xsl:variable>
 
@@ -90,12 +88,12 @@
 					|UANodeSet/Aliases
 					|UANodeSet/UAObject
 					|UANodeSet/UAVariable
+					|UANodeSet/UAVariable/Value
 					|UANodeSet/UAObjectType
 					|DisplayName
 					|Description
 					|References
-					|References/Reference
-					|UANodeSet/UAVariable/Value" mode="krextor:main">
+					|References/Reference" mode="krextor:main">
 	   <xsl:apply-templates select="." mode="krextor:create-resource"/>
 </xsl:template>
 
@@ -103,26 +101,29 @@
 <xsl:variable name="krextor:literal-properties">
 
 <!-- Aliases -->
-		<Alias property="&aml;hasAlias" datatype="&xsd;string"/>
+		<Alias property="&opcua;hasAlias" krextor:attribute="yes" datatype="&xsd;string"/>
 
 <!-- UAObject  -->
-		<NodeId property="&aml;hasNodeId"/>
-	    <BrowseName property="&aml;hasBrowseName"/>
+		<NodeId property="&opcua;hasNodeId" krextor:attribute="yes" datatype="&xsd;string"/>
+	    <BrowseName property="&opcua;hasBrowseName" krextor:attribute="yes" datatype="&xsd;string"/>
 
 <!-- Reference -->
-		<ReferenceType property="&dc;referenceType"/>
-		<IsForward property="&dc;isForward" datatype="&xsd;boolean"/>
+		<ReferenceType property="&dc;referenceType" krextor:attribute="yes" datatype="&xsd;string"/>
+		<IsForward property="&dc;isForward" krextor:attribute="yes" datatype="&xsd;boolean"/>
 
 <!-- UAVariable -->
-		<ParentNodeId property="&dc;parentNodeId"/>
-		<DataType property="&dc;hasDataType"/>
-		<AccessLevel property="&dc;accessLevel"/>
-		<UserAccessLevel property="&dc;userAccessLevel"/>
+		<ParentNodeId property="&dc;parentNodeId" krextor:attribute="yes" datatype="&xsd;string"/>
+		<DataType property="&dc;hasDataType" krextor:attribute="yes" datatype="&xsd;string"/>
+		<AccessLevel property="&dc;accessLevel" krextor:attribute="yes" datatype="&xsd;string"/>
+		<UserAccessLevel property="&dc;userAccessLevel" krextor:attribute="yes" datatype="&xsd;string"/>
+
+		<String property="&dc;hasString" krextor:attribute="yes" datatype="&xsd;string"/>
 
 
 <!-- the following mapping rules will be simplified in the second example, this version can be treated as standard test case -->
 </xsl:variable>
-<xsl:template match="UANodeSet/NamespaceUris
+<xsl:template match="UANodeSet
+	                  |UANodeSet/NamespaceUris
 	                  |UANodeSet/NamespaceUris/Uri
                       |UANodeSet/Aliases
 	                  |UANodeSet/Aliases/Alias/@Alias
@@ -155,21 +156,21 @@
 <!--
 <xsl:template match="UANodeSet/AdditionalInformation/@AutomationMLVersion" mode="krextor:main">
   <xsl:call-template name="krextor:add-literal-property">
-    <xsl:with-param name="property" select="'&aml;hasAutomationMLVersion'"/>
+    <xsl:with-param name="property" select="'&opcua;hasAutomationMLVersion'"/>
     <xsl:with-param name="datatype " select="'&xsd;string'"/>
   </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="//RefSemantic/@CorrespondingAttributePath" mode="krextor:main">
   <xsl:call-template name="krextor:add-literal-property">
-    <xsl:with-param name="property" select="'&aml;hasCorrespondingAttributePath'"/>
+    <xsl:with-param name="property" select="'&opcua;hasCorrespondingAttributePath'"/>
     <xsl:with-param name="datatype " select="'&xsd;string'"/>
   </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="//Attribute/@Value" mode="krextor:main">
   <xsl:call-template name="krextor:add-literal-property">
-    <xsl:with-param name="property" select="'&aml;hasAttributeValue'"/>
+    <xsl:with-param name="property" select="'&opcua;hasAttributeValue'"/>
     <xsl:with-param name="datatype " select="'&xsd;string'"/>
   </xsl:call-template>
 </xsl:template>
