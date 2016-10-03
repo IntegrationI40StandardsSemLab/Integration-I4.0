@@ -37,8 +37,8 @@ public class FileController {
 	 * @param response : HttpServletResponse auto passed
 	 * @return LinkedList<FileMeta> as json format
 	 ****************************************************/
-	@RequestMapping(value="/upload", method = RequestMethod.POST)
-	public @ResponseBody String upload(MultipartHttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping(value="/upload", method = RequestMethod.POST, produces = "application/json")
+	public @ResponseBody Response upload(MultipartHttpServletRequest request, HttpServletResponse response) {
  		System.out.println(request.getRequestHeaders().toString());
 		//1. build an iterator
 		 Iterator<String> itr =  request.getFileNames();
@@ -85,12 +85,13 @@ public class FileController {
             Model model = matcher.match2Files(files);
             TripleStoreWriter writer = new TripleStoreWriter();
             String ret = writer.write(model);
-            System.out.println(ret);
-            return ret;
+            Response resp = new Response(ret);
+            System.out.println(resp.toString());
+            return resp;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "500";
+        return new Response("Error!");
  
 	}
 	/***************************************************

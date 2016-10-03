@@ -21,7 +21,6 @@
 <body>
 <h1>Spring MVC - jQuery File Upload</h1>
 <div style="width:500px;padding:20px">
-	<script type="text/javascript">console.log("HI")</script>
 	<input id="fileupload" type="file" name="files[]" data-url="rest/controller/upload" multiple>
 	
 	<div id="dropzone" class="fade well">Drop files here</div>
@@ -38,7 +37,35 @@
 			<th>Download</th>
 		</tr>
 	</table>
-	
+	<script type="text/javascript"> function handleFileSelect()
+	{
+		if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+			alert('The File APIs are not fully supported in this browser.');
+			return;
+		}
+
+		input = document.getElementById('fileupload');
+		if (!input) {
+			alert("Um, couldn't find the fileinput element.");
+		}
+		else if (!input.files) {
+			alert("This browser doesn't seem to support the `files` property of file inputs.");
+		}
+		else if (!input.files[0]) {
+			alert("Please select a file before clicking 'Load'");
+		}
+		else {
+			file = input.files[0];
+			fr = new FileReader();
+			fr.onload = receivedText;
+			//fr.readAsText(file);
+			fr.readAsDataURL(file);
+			//console.log(fr)
+		}
+		  function receivedText() {
+		    console.log(fr.result)
+	}     }
+	</script>
 </div>
 </body> 
 </html>

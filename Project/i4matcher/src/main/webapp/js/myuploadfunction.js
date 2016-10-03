@@ -1,10 +1,10 @@
 $(function () {
 	console.log("hello1");
     $('#fileupload').fileupload({
-        //dataType: 'json',
+        dataType: 'json',
 		autoUpload: true,
 		add: function(e, data) {
-			alert(data.type);
+			alert("files added");
 		},
         done: function (e, data) {
 			console.log(data);
@@ -19,6 +19,9 @@ $(function () {
 	            progress + '%'
 	        );
    		},
+		success: function (e,data) {
+			console.log(data)
+		},
    		
 		dropZone: $('#dropzone')
     });
