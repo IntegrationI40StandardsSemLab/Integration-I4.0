@@ -147,3 +147,22 @@ function handleFileSelect(evt) {
 }
     document.getElementById('file1').addEventListener('change', handleFileSelect, false);
     document.getElementById('file2').addEventListener('change', handleFileSelect, false);
+function getQuery()
+{
+
+	var query23=encodeURI($(".queryZone").val());
+	//var query23=btoa($(".queryZone").val());
+	//console.log( btoa(query23));
+	//var tr = document.createElement('try');
+	//$('.queryTrialZone').append('</br><a href="http://localhost:8080/i4Matcher/rest/controller/get?query='+ query23+'" target="_blank" >Shot</a>');
+	//tr.innerHTML = ['<a href="tree.html?type=opcua&url='+ query23+'" target="_blank" >Shot</a>'];
+	console.log(query23);
+	
+	 $.get("http://localhost:8080/i4Matcher/rest/controller/get?query="+query23, function(data){
+        alert("done");
+		console.log(JSON.stringify(data));
+		$('.queryTrialZone').append('</br><a href="tree.html?type=json&url=data:;base64,77u/'+  btoa(JSON.stringify(data))+'" target="_blank" >Shot</a>');
+		$('.queryTrialZone').append('</br><a href="http://localhost:8080/i4Matcher/rest/controller/get?query='+  query23+'" target="_blank" download>Download</a>');
+    });
+
+}
