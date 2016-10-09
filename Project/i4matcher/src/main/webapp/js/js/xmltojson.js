@@ -1,24 +1,29 @@
-function xmltotree(divClass, file, impNodes, impAttr) {
-	var XMLText = readTextFile(file);
-	var tagArray = XMLToArray(XMLText);  // returns an array of all nodes with related info
-	var mapArray = arrayMapping(tagArray, impNodes, impAttr)
-	var JSONText = arrayToJSON(mapArray);  // converts array into a JSON file
-	var maxDepth = 0;  // we evaluate the maxDepth of the tree in order to draw a frame for it
-	var maxWidth = 0;  // we evaluate the maxWidth of the tree in order to draw a frame for it
-	var depthArray = [];
-	for(var i=0; i<=tagArray.length; i++) {
-			depthArray.push(0);
-	}
-	for (var i=0; i<tagArray.length; i++) {
-		if (tagArray[i].depth > maxWidth) {
-			maxWidth = tagArray[i].depth;
+function xmltotree(divClass, file, impNodes, impAttr, ifJSON) {
+	if (ifJSON) {
+		var JSONText = readTextFile(file);
+		drawTree(divClass, JSONText, 5, 20);
+	} else {
+		var XMLText = readTextFile(file);
+		var tagArray = XMLToArray(XMLText);  // returns an array of all nodes with related info
+		var mapArray = arrayMapping(tagArray, impNodes, impAttr)
+		var JSONText = arrayToJSON(mapArray);  // converts array into a JSON file
+		var maxDepth = 0;  // we evaluate the maxDepth of the tree in order to draw a frame for it
+		var maxWidth = 0;  // we evaluate the maxWidth of the tree in order to draw a frame for it
+		var depthArray = [];
+		for(var i=0; i<=tagArray.length; i++) {
+				depthArray.push(0);
 		}
-		depthArray[tagArray[i].depth] += 1;
+		for (var i=0; i<tagArray.length; i++) {
+			if (tagArray[i].depth > maxWidth) {
+				maxWidth = tagArray[i].depth;
+			}
+			depthArray[tagArray[i].depth] += 1;
+		}
+		maxWidth += 1;
+		maxDepth = Math.max.apply(null, depthArray);
+		divClass = "."+divClass;
+		drawTree(divClass, JSONText, maxDepth, maxWidth);
 	}
-	maxWidth += 1;
-	maxDepth = Math.max.apply(null, depthArray);
-	divClass = "."+divClass;
-	drawTree(divClass, JSONText, maxDepth, maxWidth);
 }
 
 function readTextFile(file){

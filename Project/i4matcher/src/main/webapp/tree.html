@@ -13,10 +13,13 @@
 			var urlInd = url.search("&");
 			var neu = url.substring(urlInd+5, url.length);
 			var neu1 = url.substring(typeInd+1, urlInd);
+			
 			if (url.substring(typeInd+1, urlInd) == 'aml') {
-				xmltotree("chart1", url.substring(urlInd+5, url.length), ["InstanceHierarchy", "InterfaceClassLib", "SystemUnitClassLib", "RoleClassLib"], ["SchemaVersion"]);
+				xmltotree("chart1", url.substring(urlInd+5, url.length), ["InstanceHierarchy", "InterfaceClassLib", "SystemUnitClassLib", "RoleClassLib"], ["SchemaVersion"], 0);
 			} else if (url.substring(typeInd+1, urlInd) == 'opcua') {
-				xmltotree("chart1", url.substring(urlInd+5, url.length),[],[]);
+				xmltotree("chart1", url.substring(urlInd+5, url.length),[],[], 0);
+			} else if (url.substring(typeInd+1, urlInd) == 'json') {
+				xmltotree("chart1", url.substring(urlInd+5, url.length),[],[], 1);
 			} else {
 				console.log('unknown file type');
 			}

@@ -20,16 +20,20 @@ function drawTree(selectString, treeData, maxDepth, maxWidth) {
 	.append("g")
 		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 	
-	
+	if (typeof treeData == "string") {
+		treeData = JSON.parse(treeData);
+	}
 	root = treeData[0];
 	root.x0 = height / 2;
 	root.y0 = 0;
 	
 	function collapse(d) {
-		if (d.children.length) {
-		d._children = d.children;
-		d._children.forEach(collapse);
-		d.children = null;
+		if (d.children) {
+			if (d.children.length) {
+				d._children = d.children;
+				d._children.forEach(collapse);
+				d.children = null;
+			}
 		}
 	}
 	
@@ -48,7 +52,7 @@ function drawTree(selectString, treeData, maxDepth, maxWidth) {
 	// Normalize for fixed-depth.
 	nodes.forEach(function(d) { d.y = d.depth * 240; });
 	
-	// Update the nodes…
+	// Update the nodes
 	var node = svg.selectAll("g.node")
 		.data(nodes, function(d) { return d.ids || (d.ids = ++i); });
 	
