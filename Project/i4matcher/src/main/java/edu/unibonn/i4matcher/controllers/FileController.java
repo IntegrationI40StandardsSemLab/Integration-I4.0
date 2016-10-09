@@ -100,7 +100,7 @@ public class FileController {
 	 * @return void
 	 ****************************************************/
 	@RequestMapping(value = "/get" +
-			"", method = RequestMethod.GET)
+			"", method = RequestMethod.GET, produces = "application/json")
 	 public void get(HttpServletResponse response,
 					 //@PathVariable String value
 					 @RequestParam(value = "query") String qry) {
