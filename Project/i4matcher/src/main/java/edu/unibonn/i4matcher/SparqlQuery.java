@@ -11,51 +11,61 @@ import org.apache.jena.query.ResultSet;
 import virtuoso.jena.driver.*;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * Created by Alina on 10/3/2016.
  */
 public class SparqlQuery {
-
+    private String user;
+    private String pass;
+    private String srv;
     /**
      * Executes a SPARQL query against a virtuoso url and prints results.
      */
-    public static void main(String[] args) {
+    public SparqlQuery(){
+        Locale locale = Locale.ENGLISH;
+        ResourceBundle dbconn = ResourceBundle.getBundle("dbconn",
+                locale);
 
-        String url;
-        url = "jdbc:virtuoso://192.168.0.105:1111";
-
-/*			STEP 1			*/
-        VirtGraph set = new VirtGraph (url, "dba", "dba");
-
-/*			STEP 2			*/
-
-
-/*			STEP 3			*/
-/*		Select all data in virtuoso	*/
-        Query sparql = QueryFactory.create("SELECT * WHERE { GRAPH ?graph { ?s ?p ?o } } limit 100");
-
-/*			STEP 4			*/
-        VirtuosoQueryExecution vqe = VirtuosoQueryExecutionFactory.create (String.valueOf(sparql), set);
-
-        ResultSet results = vqe.execSelect();
-        while (results.hasNext()) {
-            QuerySolution result = results.nextSolution();
-            RDFNode graph = result.get("new");
-            RDFNode s = result.get("s");
-            RDFNode p = result.get("p");
-            RDFNode o = result.get("o");
-            //System.out.println(graph + " { " + s + " " + p + " " + o + " . }");
-
-            // write to a ByteArrayOutputStream
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-
-            ResultSetFormatter.outputAsJSON(outputStream, results);
-
-// and turn that into a String
-            String json = new String(outputStream.toByteArray());
-
-            System.out.println(json);
-        }
+//            System.out.println(classLoader.getResource(schema + "..turtle.xsl"));
+        this.user = dbconn.getString("user");
+        this.pass = dbconn.getString("password");
+        this.srv = dbconn.getString("srv");
     }
+    public String getResult(String query) {
+        String json ="";
+
+        VirtGraph set = new VirtGraph (this.srv, this.user, this.pass);
+        Query sparql = QueryFactory.create(query);
+        VirtuosoQueryExecution vqe = VirtuosoQueryExecutionFactory.create (String.valueOf(sparql), set);
+        ResultSet results = vqe.execSelect();
+        try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()){
+            ResultSetFormatter.outputAsJSON(outputStream, results);
+            json = new String(outputStream.toByteArray());
+            System.out.println(json);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return json;
+
+    }
+
+/*
+    public static void main(String[] args) throws UnsupportedEncodingException {
+//        String url = "jdbc:virtuoso://192.168.0.105:1111";
+        //String qry = "SELECT * WHERE { GRAPH ?graph { ?s ?p ?o } } limit 100";
+        String qry = "SELECT+%2A+WHERE+%7B+GRAPH+%3Fgraph+%7B+%3Fs+%3Fp+%3Fo+%7D+%7D+limit+100";
+        String param = URLDecoder.decode(qry, "UTF-8");
+        SparqlQuery sp = new SparqlQuery();
+        String a = sp.getResult(param);
+
+    }
+*/
+
 }
