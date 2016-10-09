@@ -3,7 +3,7 @@ var numberofFiles = 0;
 $(function(){
     $('#responseFrame').on('load', function(){
         var iframe = document.getElementById('responseFrame');
-        if (iframe.iframe.contentDocument && iframe.contentWindow.document) {
+        if (iframe.contentDocument && iframe.contentWindow.document) {
           var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
           var iframeContent = iframeDocument.all[3].childNodes["0"].data;
           if (iframeContent == '{"response":"new"}') {
