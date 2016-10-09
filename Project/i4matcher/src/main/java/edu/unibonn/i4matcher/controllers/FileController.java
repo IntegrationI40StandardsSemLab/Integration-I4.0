@@ -1,17 +1,16 @@
 package edu.unibonn.i4matcher.controllers;
 
-import java.io.ByteArrayInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
 import javax.servlet.http.HttpServletResponse;
+//import javax.json;
 
 import edu.unibonn.i4matcher.SparqlQuery;
+import org.apache.jena.query.QueryParseException;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
@@ -100,22 +99,29 @@ public class FileController {
 	 * @param qry : value from the URL
 	 * @return void
 	 ****************************************************/
-	@RequestMapping(value = "/get", method = RequestMethod.GET)
+	@RequestMapping(value = "/get" +
+			"", method = RequestMethod.GET)
 	 public void get(HttpServletResponse response,
 					 //@PathVariable String value
-					 @RequestParam(value = "query") String qry){
+					 @RequestParam(value = "query") String qry) {
 //		 FileMeta getFile = files.get(Integer.parseInt(value));
 		SparqlQuery sq = new SparqlQuery();
-		try {
+		try (OutputStream out = response.getOutputStream()){
 			String query = URLDecoder.decode(qry, "UTF-8");
 			String res = sq.getResult(query);
 			response.setContentType("application/json");
-			 	//response.setHeader("Content-disposition", "attachment; filename=\""+getFile.getFileName()+"\"");
-		        FileCopyUtils.copy(res.getBytes(), response.getOutputStream());
-		 }catch (IOException e) {
+			//response.setHeader("Content-disposition", "attachment; filename=\""+getFile.getFileName()+"\"");
+			FileCopyUtils.copy(res.getBytes(), out);
+		}catch (QueryParseException e){
+			try (OutputStream out = response.getOutputStream()) {
+				FileCopyUtils.copy("{\"error\":\"Query not valid\"}".getBytes(), out);
+			}catch (IOException e1){
+				e1.printStackTrace();
+			}
+		}catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-		 }
+		}
 	 }
  
 }
