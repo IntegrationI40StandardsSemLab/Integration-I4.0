@@ -1,0 +1,25 @@
+table.contentTable {
+    margin-left:25%; 
+    margin-top:3%;
+}
+table.contentTable td {
+    vertical-align: top;
+}
+div#content1, div#content2 {
+    display:inline-block; 
+    width:250px;
+}
+div#submitButton {
+    margin-left:25%;
+}
+iframe#responseFrame {
+    width:0;
+    height:0;
+    border:0;
+    display:none;
+}
+.queryField {
+    width:600px;
+    height:100px;
+    resize:none;
+}

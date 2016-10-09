@@ -1,0 +1,25 @@
+<HTML>
+	<head>
+		<link rel="stylesheet" href="css/tree_style.css" type="text/css">
+		<script src="js/js/d3.js"></script>
+		<script src="js/js/xmltojson.js"></script>
+		<script src="js/js/jsontotree.js"></script>
+	</head>
+	<body>
+		<div class="chart1"></div>
+		<script>
+			var url = window.location.href;
+			var typeInd = url.search("=");
+			var urlInd = url.search("&");
+			var neu = url.substring(urlInd+5, url.length);
+			var neu1 = url.substring(typeInd+1, urlInd);
+			if (url.substring(typeInd+1, urlInd) == 'aml') {
+				xmltotree("chart1", url.substring(urlInd+5, url.length), ["InstanceHierarchy", "InterfaceClassLib", "SystemUnitClassLib", "RoleClassLib"], ["SchemaVersion"]);
+			} else if (url.substring(typeInd+1, urlInd) == 'opcua') {
+				xmltotree("chart1", url.substring(urlInd+5, url.length),[],[]);
+			} else {
+				console.log('unknown file type');
+			}
+		</script>
+	</body>
+</HTML>
