@@ -106,22 +106,27 @@ public class FileController {
 					 @RequestParam(value = "query") String qry) {
 //		 FileMeta getFile = files.get(Integer.parseInt(value));
 		SparqlQuery sq = new SparqlQuery();
-		try (OutputStream out = response.getOutputStream()){
+		String res = "";
+		try {
 			String query = URLDecoder.decode(qry, "UTF-8");
-			String res = sq.getResult(query);
-			response.setContentType("application/json");
+			res = sq.getResult(query);
 			//response.setHeader("Content-disposition", "attachment; filename=\""+getFile.getFileName()+"\"");
-			FileCopyUtils.copy(res.getBytes(), out);
-		}catch (QueryParseException e){
-			try (OutputStream out = response.getOutputStream()) {
-				FileCopyUtils.copy("{\"error\":\"Query not valid\"}".getBytes(), out);
-			}catch (IOException e1){
-				e1.printStackTrace();
-			}
-		}catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+		} catch (QueryParseException e){
+			res = "{\"error\":\"Query not valid\"}";
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
 		}
+
+		try {
+			response.setContentType("application/json");
+			FileCopyUtils.copy(res.getBytes(), response.getOutputStream());
+			response.flushBuffer();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	 }
  
 }

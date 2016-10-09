@@ -113,7 +113,7 @@ public class Kreker {
         }
         return new byte[0];
     }
-
+/*
     public static void main(String[] args) throws IOException {
         InputStream aml1 = new FileInputStream("C:\\Users\\alink_000\\Desktop\\Uni Bonn\\Lab semantic\\AutomationML Whitepaper - OPCUAforAutomationML_Mar2016/Topology.xml");
         //URL res = ClassLoader.getSystemResource("automationML" + "..turtle.xsl");
@@ -128,5 +128,5 @@ public class Kreker {
 
 
     }
-
+*/
 }
