@@ -20,6 +20,11 @@ iframe#responseFrame {
 }
 .queryField {
     width:600px;
+    height:130px;
+    resize:none;
+}
+.uploadGif {
+	width:100px;
     height:100px;
     resize:none;
 }

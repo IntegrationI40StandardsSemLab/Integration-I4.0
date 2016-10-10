@@ -1,6 +1,8 @@
 function xmltotree(divClass, file, impNodes, impAttr, ifJSON) {
 	if (ifJSON) {
-		var JSONText = readTextFile(file);
+		var newObj = readTextFile(file);
+		var mapArray = textToArray(newObj);
+		var JSONText = arrayToJSON(mapArray);  // converts array into a JSON file
 		drawTree(divClass, JSONText, 5, 20);
 	} else {
 		var XMLText = readTextFile(file);
@@ -39,6 +41,25 @@ function readTextFile(file){
 	}
 	rawFile.send(null);
 	return allText;
+}
+
+function textToArray(newObj) {
+	var mapArray = [];
+	var rootObj = new Object();
+	rootObj.id = 1;
+	rootObj.parent = 0;
+	rootObj.children = [];
+	rootObj.depth = 0;	
+	rootObj.name = 'results';
+	rootObj.tag = '';
+	rootObj.type = '';
+	rootObj.value = '';
+	rootObj.extra = '';
+	for (var i=0; i<newObj.results.bindings.length; i++) {
+		rootObj.children.push(i+1);
+	}
+	mapArray.push(rootObj);
+	return mapArray
 }
 			
 function XMLToArray(text) {

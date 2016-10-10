@@ -23,19 +23,20 @@
     </nav>
 
     <div class="container marketing">
-      <form method="POST" id="submitForm" enctype="multipart/form-data" action="rest/controller/upload" target="responseFrame">
+		<!--  -->
+      <form method="POST" id="submitForm" enctype="multipart/form-data" onsubmit="submitFormFunc()" target="responseFrame">
         <table class="contentTable">
           <tr>
             <td>
               <div id="content1">
                 <span id="descr1">Select .aml/.opcua file to upload:</span>
-                <input type="file" id="file1" name="file1" data-url="rest/controller/upload"/>
+                <input type="file" id="file1" name="file1"/>
               </div>
             </td>
             <td>
               <div id="content2">
                 <span id="descr2">Select .aml/.opcua file to upload:</span>
-                <input type="file" id="file2" name="file2" data-url="rest/controller/upload"/>
+                <input type="file" id="file2" name="file2"/>
               </div>
             </td>
           </tr>
@@ -43,11 +44,6 @@
         <br>
         <div id="submitButton">
         </div>
-        <div class="queryTrialZone">
-			<textarea class="queryZone"></textarea>
-			<br/>
-			<input type="button" onclick="getQuery()" value="Run Query"/>
-		</div>
       </form>
       <iframe id="responseFrame"  name="responseFrame">
       </iframe>
