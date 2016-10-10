@@ -133,4 +133,4 @@ function handleFileSelect(evt) {
 }
 document.getElementById('file1').addEventListener('change', handleFileSelect, false);
 document.getElementById('file2').addEventListener('change', handleFileSelect, false);
-//localStorage.clear();
+localStorage.clear();

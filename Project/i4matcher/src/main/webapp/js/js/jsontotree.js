@@ -20,9 +20,6 @@ function drawTree(selectString, treeData, maxDepth, maxWidth) {
 	.append("g")
 		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 	
-	if (typeof treeData == "string") {
-		treeData = JSON.parse(treeData);
-	}
 	root = treeData[0];
 	root.x0 = height / 2;
 	root.y0 = 0;
