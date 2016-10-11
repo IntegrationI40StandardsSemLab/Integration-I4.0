@@ -1,6 +1,7 @@
 package edu.unibonn.i4matcher;
 
 //import com.hp.hpl.jena.query.*;
+import edu.unibonn.i4matcher.helpers.Config;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.QuerySolution;
@@ -22,26 +23,15 @@ import java.util.ResourceBundle;
  * Created by Alina on 10/3/2016.
  */
 public class SparqlQuery {
-    private String user;
-    private String pass;
-    private String srv;
     /**
      * Executes a SPARQL query against a virtuoso url and prints results.
      */
     public SparqlQuery(){
-        Locale locale = Locale.ENGLISH;
-        ResourceBundle dbconn = ResourceBundle.getBundle("dbconn",
-                locale);
-
-//            System.out.println(classLoader.getResource(schema + "..turtle.xsl"));
-        this.user = dbconn.getString("user");
-        this.pass = dbconn.getString("password");
-        this.srv = dbconn.getString("srv");
     }
     public String getResult(String query) {
         String json ="";
 
-        VirtGraph set = new VirtGraph (this.srv, this.user, this.pass);
+        VirtGraph set = new VirtGraph (Config.SRV+Config.SRVOPTS, Config.USER, Config.PASS);
         Query sparql = QueryFactory.create(query);
         VirtuosoQueryExecution vqe = VirtuosoQueryExecutionFactory.create (String.valueOf(sparql), set);
         ResultSet results = vqe.execSelect();

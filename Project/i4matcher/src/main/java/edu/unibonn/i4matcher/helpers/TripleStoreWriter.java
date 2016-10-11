@@ -4,11 +4,7 @@ import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.ResourceFactory;
 import org.apache.jena.rdf.model.Statement;
 import virtuoso.jena.driver.VirtGraph;
-//import com.hp.hpl.jena.sparql.engine.main.QueryEngineMain;
 import java.util.*;
-import java.sql.SQLException;
-import java.sql.DriverManager;
-import java.sql.Connection;
 
 /**
  * Created by phil on 21.09.16.
@@ -16,17 +12,11 @@ import java.sql.Connection;
 public class TripleStoreWriter {
 
     public String write(Model m) {
-        Locale locale = Locale.ENGLISH;
-        ResourceBundle dbconn = ResourceBundle.getBundle("dbconn",
-                locale);
-        String localServer = dbconn.getString("srv");
-        String user = dbconn.getString("user");
-        String password = dbconn.getString("password");
-
         // connect to Virtuoso instance
-        String graph = "new";
-        VirtGraph vg = new VirtGraph( graph, localServer, user, password);
-        System.out.println("HI");
+        long ts = System.currentTimeMillis();
+        String graph = String.valueOf(ts);
+        VirtGraph vg = new VirtGraph( Config.SRV+ graph, Config.SRV + Config.SRVOPTS, Config.USER, Config.PASS);
+
         // convert triples
         Iterator<Statement> it = m.listStatements();
         while(it.hasNext()) {
