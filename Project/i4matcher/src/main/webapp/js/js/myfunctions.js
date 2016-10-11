@@ -1,4 +1,5 @@
 var numberOfFiles = 0;
+var dataType;
 
 function submitFormFunc() {
 	var form = document.forms.submitForm;
@@ -20,7 +21,10 @@ function submitFormFunc() {
 					});
 				} else {
 					console.log(data);
-					$("#submitButton").html('Something went wrong! Try to reload the page!');
+					dataType = data;
+					$("#rahimb").append('<select name="type" id="choice"><option selected value="html">HTML</option><option  value="JSON">JSON</option><option value="Turtle">Turtle</option><option value="XML">XML</option></select>');
+					$("#rahimb").append('<br/><br/><input type="button" onclick="downloadInt()" value="Download"/>');
+					$("#submitButton").html('Something went wrong! Try to reload the page!23');
 				}
 			}
 		} else if (xhr.readyState == 4) {
@@ -31,7 +35,20 @@ function submitFormFunc() {
 	}
     xhr.send(formData);
 }
-
+function downloadInt()
+{
+	dataType = dataType.replace(/\D/g, '');
+	var selection = $("#choice option:selected").val();
+	var query = encodeURI('select * \n from <jdbc:virtuoso://localhost:1111/'+dataType+'>\nwhere { ?s ?p ?o} ');
+	var format = encodeURI('text/'+selection);
+	var timeout=encodeURI('0');
+	var debug = encodeURI('on');
+	$.get('http://localhost:8890/sparql?default-graph-uri=&query='+query+'&format='+format+'&timeout='+timeout+'&debug=on',function (data){
+		alert("we are here");
+		alert(data);
+		console.log(data);
+	});
+}
 function getQuery() {
 	var query = encodeURI($(".queryField").val());
 	console.log(query);
