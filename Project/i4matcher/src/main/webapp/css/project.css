@@ -9,7 +9,7 @@ div#content1, div#content2 {
     display:inline-block; 
     width:250px;
 }
-div#submitButton {
+div#submitButton, div#downloadArea {
     margin-left:25%;
 }
 iframe#responseFrame {
@@ -27,4 +27,12 @@ iframe#responseFrame {
 	width:100px;
     height:100px;
     resize:none;
+}
+.hiddenLink {
+	display:none;
+}
+.comment {
+	font-size:8pt;
+	margin-left:373px;
+	vertical-align:top;
 }

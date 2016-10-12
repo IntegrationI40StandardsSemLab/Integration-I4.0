@@ -5,9 +5,9 @@ function xmltotree(divClass, file, impNodes, impAttr, ifJSON) {
 		var mapArray = JSONToArray(newObj);
 		var JSONText = arrayToJSON(mapArray);  // converts array into a JSON file
 		if (newObj.results.bindings.length > 4) {
-			drawTree(divClass, JSONText, newObj.results.bindings.length*2, 3);
+			drawTree(divClass, JSONText, newObj.results.bindings.length*2, 5);
 		} else {
-			drawTree(divClass, JSONText, 6, 3);
+			drawTree(divClass, JSONText, 6, 5);
 		}
 	} else {
 		var XMLText = readTextFile(file);
@@ -69,36 +69,37 @@ function JSONToArray(newObj) {
 	rootObj = objInit(totalIdNum, 0, [], 0, 'results', '', '', '', '');
 	mapArray.push(rootObj);
 	for (var i=0; i<newObj.results.bindings.length; i++) {
-		totalIdNum += 1;
+		/*totalIdNum += 1;
 		rootObj.children.push(totalIdNum);
 		var bindObj = new Object();
 		bindObj = objInit(totalIdNum, 1, [], 1, 'binding ' + (i+1), '', '', '', '');
 		mapArray.push(bindObj);
-		var tempInd = totalIdNum;
-		
-		totalIdNum += 1;
-		bindObj.children.push(totalIdNum);
-		var innerObj = new Object();
-		innerObj = objInit(totalIdNum, tempInd, [], 2, newObj.results.bindings[i].graph.value, '', newObj.results.bindings[i].graph.type, "graph", '');
-		mapArray.push(innerObj);
-		
-		totalIdNum += 1;
-		bindObj.children.push(totalIdNum);
-		var innerObj = new Object();
-		innerObj = objInit(totalIdNum, tempInd, [], 2, newObj.results.bindings[i].o.value, '', newObj.results.bindings[i].o.type, "o" , '');
-		mapArray.push(innerObj);
-		
-		totalIdNum += 1;
-		bindObj.children.push(totalIdNum);
-		var innerObj = new Object();
-		innerObj = objInit(totalIdNum, tempInd, [], 2, newObj.results.bindings[i].p.value, '', newObj.results.bindings[i].p.type, "p", '');
-		mapArray.push(innerObj);
-		
-		totalIdNum += 1;
-		bindObj.children.push(totalIdNum);
-		var innerObj = new Object();
-		innerObj = objInit(totalIdNum, tempInd, [], 2, newObj.results.bindings[i].s.value, '', newObj.results.bindings[i].s.type, "s", '');
-		mapArray.push(innerObj);
+		var tempInd = totalIdNum;*/
+		var depth = 1;
+		if (newObj.results.bindings[i].s) {
+			totalIdNum += 1;
+			rootObj.children.push(totalIdNum);
+			var subjectObj = new Object();
+			subjectObj = objInit(totalIdNum, 1, [], depth, "subject", '', newObj.results.bindings[i].s.type, newObj.results.bindings[i].s.value, '');
+			mapArray.push(subjectObj);
+			depth += 1;
+		}
+		if (newObj.results.bindings[i].p) {
+			totalIdNum += 1;
+			subjectObj.children.push(totalIdNum);
+			var predicatObj = new Object();
+			predicatObj = objInit(totalIdNum, totalIdNum-1, [], depth, "predicate", '', newObj.results.bindings[i].p.type, newObj.results.bindings[i].p.value, '');
+			mapArray.push(predicatObj);
+			depth += 1;
+		}
+		if (newObj.results.bindings[i].o) {
+			totalIdNum += 1;
+			predicatObj.children.push(totalIdNum);
+			var objectObj = new Object();
+			objectObj = objInit(totalIdNum, totalIdNum-1, [], depth, "object", '', newObj.results.bindings[i].o.type, newObj.results.bindings[i].o.value, '');
+			mapArray.push(objectObj);
+			depth += 1;
+		}
 	}
 	return mapArray
 }

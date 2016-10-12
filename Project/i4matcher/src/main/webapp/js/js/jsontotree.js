@@ -47,7 +47,7 @@ function drawTree(selectString, treeData, maxDepth, maxWidth) {
 		links = tree.links(nodes);
 	
 	// Normalize for fixed-depth.
-	nodes.forEach(function(d) { d.y = d.depth * 240; });
+	nodes.forEach(function(d) { d.y = d.depth * 300; });
 	
 	// Update the nodes
 	var node = svg.selectAll("g.node")
