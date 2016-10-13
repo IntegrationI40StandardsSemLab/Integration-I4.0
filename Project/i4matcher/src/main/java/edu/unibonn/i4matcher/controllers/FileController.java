@@ -29,14 +29,18 @@ public class FileController {
 	LinkedList<FileMeta> files = new LinkedList<FileMeta>();
 	FileMeta fileMeta = null;
 	/***************************************************
-	 * URL: /rest/controller/upload  
+	 * URL: /rest/controller/upload/{value}
 	 * upload(): receives files
 	 * @param request : MultipartHttpServletRequest auto passed
 	 * @param response : HttpServletResponse auto passed
+	 * @param value: String type of matching
 	 * @return LinkedList<FileMeta> as json format
 	 ****************************************************/
-	@RequestMapping(value="/upload", method = RequestMethod.POST, produces = "application/json")
-	public @ResponseBody Response upload(MultipartHttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping(value="/upload/{value}", method = RequestMethod.POST, produces = "application/json")
+	public @ResponseBody Response upload(
+			MultipartHttpServletRequest request,
+			HttpServletResponse response,
+			@PathVariable String value) {
  		System.out.println(request.getRequestHeaders().toString());
 		//1. build an iterator
 		 Iterator<String> itr =  request.getFileNames();
@@ -44,12 +48,9 @@ public class FileController {
 
 		 while(itr.hasNext()){
 
-			 mpf = request.getFile(itr.next()); 
-			 System.out.println(mpf.getOriginalFilename() +" uploaded! "+files.size());
-
+			 mpf = request.getFile(itr.next());
 			 if(files.size() >= 10)
 				 files.pop();
-			 
 			 fileMeta = new FileMeta();
 			 fileMeta.setFileName(mpf.getOriginalFilename());
 			 fileMeta.setFileSize(mpf.getSize()/1024+" Kb");
@@ -78,7 +79,7 @@ public class FileController {
 			 files.add(fileMeta);
 			 
 		 }
-        Matcher matcher = new Matcher();
+        Matcher matcher = new Matcher(value);
         try {
             Model model = matcher.match2Files(files);
             TripleStoreWriter writer = new TripleStoreWriter();

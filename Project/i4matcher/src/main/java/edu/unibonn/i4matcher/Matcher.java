@@ -16,6 +16,10 @@ import java.util.LinkedList;
  * Created by Alina on 9/7/2016.
  */
 public class Matcher {
+    private String matchLevel;
+    public Matcher(String value){
+        this.matchLevel = value;
+    }
 
     public Model match2Files (LinkedList<FileMeta> files) throws IOException {
         ArrayList<Statement> fileMap1 = getStatements(files.get(0).getTtl());
@@ -24,7 +28,11 @@ public class Matcher {
         Model model = null;
         model = ModelFactory.createDefaultModel();
 
-
+        switch (this.matchLevel){
+            case "strict" : ;
+            case "soft":;
+            case "":;
+        }
 
         String matchFileName = "match.ttl";
         FileWriter matchFile = new FileWriter(matchFileName);

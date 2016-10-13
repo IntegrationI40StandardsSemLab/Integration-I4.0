@@ -140,10 +140,10 @@
     </function>
 
     <xd:doc>A regular expression pattern that is matched against any URI to be rewritten by the built-in default implementation of the <code>krextor:external-uri</code> template</xd:doc>
-    <param name="document-uri-pattern-match" as="xs:string"/>
+    <param name="document-uri-pattern-match" as="xs:string">http</param>
 
     <xd:doc>A replacement string (possibly including backreferences to substrings matched by <code>document-uri-pattern-match</code>) that controls how URIs are rewritten by the built-in default implementation of the <code>krextor:external-uri</code> template</xd:doc>
-    <param name="document-uri-pattern-replace" as="xs:string"/>
+    <param name="document-uri-pattern-replace" as="xs:string">http</param>
 
     <xd:doc>Default implementation of the same-named function.  Rewrites an internal into an external URI by a string replacement according to the
 	settings of the parameters <code>document-uri-pattern-match</code> and
