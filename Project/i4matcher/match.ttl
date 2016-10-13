@@ -1,44 +1,11 @@
-<https://w3id.org/i40/aml/ExternalReference1>
-        a       <https://w3id.org/i40/aml/ExternalReference> ;
-        <https://w3id.org/i40/aml/externalReferenceAlias>
-                "BaseRoleClassLib" ;
-        <https://w3id.org/i40/aml/refBaseClassPath>
-                "Libs/RoleClass Libraries/AutomationMLBaseRoleClassLib.aml" .
-
-<https://w3id.org/i40/aml/InstanceHierarchy1>
-        a       <https://w3id.org/i40/aml/InstanceHierarchy> ;
+<https://w3id.org/i40/aml/SystemUnitClassLib1>
+        a       <https://w3id.org/i40/aml/SystemUnitClassLib> ;
         <https://w3id.org/i40/aml/hasAttributeName>
-                "ManufacturingSystem" , "NE150DemoProject" ;
-        <https://w3id.org/i40/aml/hasInternalElement>
-                <https://w3id.org/i40/aml/InternalElement1> , <https://w3id.org/i40/aml/InternalElement2> .
-
-<https://w3id.org/i40/aml/AdditionalInformation2>
-        a       <https://w3id.org/i40/aml/AdditionalInformation> ;
-        <https://w3id.org/i40/aml/hasLastWritingDateTime>
-                "2012-02-20\n            "^^<http://www.w3.org/2001/XMLSchema#dateTime> , "2012-02-20\n\t\t\t"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-        <https://w3id.org/i40/aml/hasWriterID>
-                "AutomationML e.V." ;
-        <https://w3id.org/i40/aml/hasWriterName>
-                "AutomationML e.V." ;
-        <https://w3id.org/i40/aml/hasWriterProjectID>
-                "AutomationML Tutorial Examples\n            " , "AutomationML Tutorial Examples\n\t\t\t" ;
-        <https://w3id.org/i40/aml/hasWriterProjectTitle>
-                "AutomationML Tutorial Examples" ;
-        <https://w3id.org/i40/aml/hasWriterRelease>
-                "1.0" ;
-        <https://w3id.org/i40/aml/hasWriterVendor>
-                "AutomationML e.V." ;
-        <https://w3id.org/i40/aml/hasWriterVendorURL>
-                "www.AutomationML.org" ;
-        <https://w3id.org/i40/aml/hasWriterVersion>
+                "LibOfCommonTools" ;
+        <https://w3id.org/i40/aml/hasSystemUnitClass>
+                <https://w3id.org/i40/aml/SystemUnitClass1> ;
+        <https://w3id.org/i40/aml/hasVersion>
                 "1.0" .
-
-<https://w3id.org/i40/aml/Attribute1>
-        a       <https://w3id.org/i40/aml/Attribute> ;
-        <https://w3id.org/i40/aml/hasAttribute>
-                <https://w3id.org/i40/aml/Attribute2> , <https://w3id.org/i40/aml/Attribute3> ;
-        <https://w3id.org/i40/aml/hasAttributeName>
-                "Cardinality" , "New Attribute" .
 
 <https://w3id.org/i40/aml/CAEXFile1>
         a       <https://w3id.org/i40/aml/CAEXFile> ;
@@ -47,7 +14,7 @@
         <https://w3id.org/i40/aml/hasExternalReference>
                 <https://w3id.org/i40/aml/ExternalReference1> , <https://w3id.org/i40/aml/ExternalReference2> ;
         <https://w3id.org/i40/aml/hasFileName>
-                "seed-Restriction-0.aml" , "ExampleTopology.aml" ;
+                "ExampleTopology.aml" ;
         <https://w3id.org/i40/aml/hasInstanceHierarchy>
                 <https://w3id.org/i40/aml/InstanceHierarchy1> ;
         <https://w3id.org/i40/aml/hasInterfaceClassLib>
@@ -59,23 +26,50 @@
         <https://w3id.org/i40/aml/hasSystemUnitClassLib>
                 <https://w3id.org/i40/aml/SystemUnitClassLib1> .
 
-<https://w3id.org/i40/aml/ExternalReference2>
+<https://w3id.org/i40/aml/RoleRequirements1>
+        a       <https://w3id.org/i40/aml/RoleRequirements> ;
+        <https://w3id.org/i40/aml/refBaseRoleClassPath>
+                "ManufacturingRoleClasses/Tool" .
+
+<https://w3id.org/i40/aml/InterfaceClass1>
+        a       <https://w3id.org/i40/aml/InterfaceClass> ;
+        <https://w3id.org/i40/aml/hasAttributeName>
+                "Energy" ;
+        <https://w3id.org/i40/aml/refBaseClassPath>
+                "BaseInterfaceClassLib@AutomationMLInterfaceClassLib/AutomationMLBaseInterface" .
+
+<https://w3id.org/i40/aml/InternalElement2>
+        a       <https://w3id.org/i40/aml/InternalElement> ;
+        <http://purl.org/dc/elements/1.1/identifier>
+                "{19dcf818-4716-4fc1-a85f-28e1938c4c3a}" ;
+        <https://w3id.org/i40/aml/RefBaseSystemUnitPath>
+                "LibOfCommonTools/ElectricScrewdriver" ;
+        <https://w3id.org/i40/aml/hasAttributeName>
+                "secondScrewdriver" ;
+        <https://w3id.org/i40/aml/hasExternalInterface>
+                <https://w3id.org/i40/aml/ExternalInterface2> ;
+        <https://w3id.org/i40/aml/hasRoleRequirements>
+                <https://w3id.org/i40/aml/RoleRequirements2> ;
+        <https://w3id.org/i40/aml/hasSupportedRoleClass>
+                <https://w3id.org/i40/aml/SupportedRoleClass2> .
+
+<https://w3id.org/i40/aml/ExternalReference1>
         a       <https://w3id.org/i40/aml/ExternalReference> ;
         <https://w3id.org/i40/aml/externalReferenceAlias>
-                "BaseInterfaceClassLib" ;
+                "BaseRoleClassLib" ;
         <https://w3id.org/i40/aml/refBaseClassPath>
-                "Libs/InterfaceClass Libraries/AutomationMLInterfaceClassLib.aml" .
+                "Libs/RoleClass Libraries/AutomationMLBaseRoleClassLib.aml" .
 
 <https://w3id.org/i40/aml/InternalElement1>
         a       <https://w3id.org/i40/aml/InternalElement> ;
         <http://purl.org/dc/elements/1.1/identifier>
-                "{788eb291-f103-4fdc-aba0-4893b599f556}" , "adb2ebf7-dc6f-479b-abfe-64a4fd69c209" ;
+                "{788eb291-f103-4fdc-aba0-4893b599f556}" ;
         <https://w3id.org/i40/aml/RefBaseSystemUnitPath>
-                "LibOfCommonTools/ElectricScrewdriver" , "NE150SUCLibrary/PCERequest" ;
+                "LibOfCommonTools/ElectricScrewdriver" ;
         <https://w3id.org/i40/aml/hasAttribute>
                 <https://w3id.org/i40/aml/Attribute1> ;
         <https://w3id.org/i40/aml/hasAttributeName>
-                "firstScrewdriver" , "LIRCS+-A+-" ;
+                "firstScrewdriver" ;
         <https://w3id.org/i40/aml/hasExternalInterface>
                 <https://w3id.org/i40/aml/ExternalInterface1> ;
         <https://w3id.org/i40/aml/hasRoleRequirements>
@@ -83,7 +77,126 @@
         <https://w3id.org/i40/aml/hasSupportedRoleClass>
                 <https://w3id.org/i40/aml/SupportedRoleClass1> .
 
+<https://w3id.org/i40/aml/ExternalInterface3>
+        a       <https://w3id.org/i40/aml/ExternalInterface> ;
+        <http://purl.org/dc/elements/1.1/identifier>
+                "dd0e0dfe-10f8-4068-845b-9c29699ac79b" ;
+        <https://w3id.org/i40/aml/hasAttributeName>
+                "EnergySupply" ;
+        <https://w3id.org/i40/aml/refBaseClassPath>
+                "MyInterfaces/Energy" .
+
+<https://w3id.org/i40/aml/SystemUnitClass1>
+        a       <https://w3id.org/i40/aml/SystemUnitClass> ;
+        <https://w3id.org/i40/aml/hasAttributeName>
+                "ElectricScrewdriver" ;
+        <https://w3id.org/i40/aml/hasExternalInterface>
+                <https://w3id.org/i40/aml/ExternalInterface3> ;
+        <https://w3id.org/i40/aml/hasSupportedRoleClass>
+                <https://w3id.org/i40/aml/SupportedRoleClass3> .
+
+<https://w3id.org/i40/aml/ExternalInterface2>
+        a       <https://w3id.org/i40/aml/ExternalInterface> ;
+        <http://purl.org/dc/elements/1.1/identifier>
+                "50e10905-ac18-413c-afab-ad8ed1569fff" ;
+        <https://w3id.org/i40/aml/hasAttributeName>
+                "EnergySupply" ;
+        <https://w3id.org/i40/aml/refBaseClassPath>
+                "MyInterfaces/Energy" .
+
+<https://w3id.org/i40/aml/InstanceHierarchy1>
+        a       <https://w3id.org/i40/aml/InstanceHierarchy> ;
+        <https://w3id.org/i40/aml/hasAttributeName>
+                "ManufacturingSystem" ;
+        <https://w3id.org/i40/aml/hasInternalElement>
+                <https://w3id.org/i40/aml/InternalElement1> , <https://w3id.org/i40/aml/InternalElement2> .
+
+<https://w3id.org/i40/aml/Attribute1>
+        a       <https://w3id.org/i40/aml/Attribute> ;
+        <https://w3id.org/i40/aml/hasAttributeName>
+                "New Attribute" .
+
+<https://w3id.org/i40/aml/SupportedRoleClass3>
+        a       <https://w3id.org/i40/aml/SupportedRoleClass> ;
+        <https://w3id.org/i40/aml/refRoleClassPath>
+                "ManufacturingRoleClasses/Tool" .
+
+<https://w3id.org/i40/aml/ExternalInterface1>
+        a       <https://w3id.org/i40/aml/ExternalInterface> ;
+        <http://purl.org/dc/elements/1.1/identifier>
+                "{5f535d4c-dd46-4c1c-898c-4e58419048b6}" ;
+        <https://w3id.org/i40/aml/hasAttributeName>
+                "EnergySupply" ;
+        <https://w3id.org/i40/aml/refBaseClassPath>
+                "MyInterfaces/Energy" .
+
+<https://w3id.org/i40/aml/AdditionalInformation2>
+        a       <https://w3id.org/i40/aml/AdditionalInformation> ;
+        <https://w3id.org/i40/aml/hasLastWritingDateTime>
+                "2012-02-20\n\t\t\t"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        <https://w3id.org/i40/aml/hasWriterID>
+                "AutomationML e.V." ;
+        <https://w3id.org/i40/aml/hasWriterName>
+                "AutomationML e.V." ;
+        <https://w3id.org/i40/aml/hasWriterProjectID>
+                "AutomationML Tutorial Examples\n\t\t\t" ;
+        <https://w3id.org/i40/aml/hasWriterProjectTitle>
+                "AutomationML Tutorial Examples" ;
+        <https://w3id.org/i40/aml/hasWriterRelease>
+                "1.0" ;
+        <https://w3id.org/i40/aml/hasWriterVendor>
+                "AutomationML e.V." ;
+        <https://w3id.org/i40/aml/hasWriterVendorURL>
+                "www.AutomationML.org" ;
+        <https://w3id.org/i40/aml/hasWriterVersion>
+                "1.0" .
+
+<https://w3id.org/i40/aml/RoleClass1>
+        a       <https://w3id.org/i40/aml/RoleClass> ;
+        <https://w3id.org/i40/aml/hasAttributeName>
+                "Tool" ;
+        <https://w3id.org/i40/aml/refBaseClassPath>
+                "BaseRoleClassLib@AutomationMLBaseRoleClassLib/AutomationMLBaseRole" .
+
+<https://w3id.org/i40/aml/SupportedRoleClass2>
+        a       <https://w3id.org/i40/aml/SupportedRoleClass> ;
+        <https://w3id.org/i40/aml/refRoleClassPath>
+                "ManufacturingRoleClasses/Tool" .
+
+<https://w3id.org/i40/aml/InterfaceClassLib1>
+        a       <https://w3id.org/i40/aml/InterfaceClassLib> ;
+        <https://w3id.org/i40/aml/hasAttributeName>
+                "MyInterfaces" ;
+        <https://w3id.org/i40/aml/hasInterfaceClass>
+                <https://w3id.org/i40/aml/InterfaceClass1> .
+
 <https://w3id.org/i40/aml/AdditionalInformation1>
         a       <https://w3id.org/i40/aml/AdditionalInformation> ;
         <https://w3id.org/i40/aml/hasAutomationMLVersion>
                 "2.0" .
+
+<https://w3id.org/i40/aml/RoleRequirements2>
+        a       <https://w3id.org/i40/aml/RoleRequirements> ;
+        <https://w3id.org/i40/aml/refBaseRoleClassPath>
+                "ManufacturingRoleClasses/Tool" .
+
+<https://w3id.org/i40/aml/SupportedRoleClass1>
+        a       <https://w3id.org/i40/aml/SupportedRoleClass> ;
+        <https://w3id.org/i40/aml/refRoleClassPath>
+                "ManufacturingRoleClasses/Tool" .
+
+<https://w3id.org/i40/aml/ExternalReference2>
+        a       <https://w3id.org/i40/aml/ExternalReference> ;
+        <https://w3id.org/i40/aml/externalReferenceAlias>
+                "BaseInterfaceClassLib" ;
+        <https://w3id.org/i40/aml/refBaseClassPath>
+                "Libs/InterfaceClass Libraries/AutomationMLInterfaceClassLib.aml" .
+
+<https://w3id.org/i40/aml/RoleClassLib1>
+        a       <https://w3id.org/i40/aml/RoleClassLib> ;
+        <https://w3id.org/i40/aml/hasAttributeName>
+                "ManufacturingRoleClasses" ;
+        <https://w3id.org/i40/aml/hasRoleClass>
+                <https://w3id.org/i40/aml/RoleClass1> ;
+        <https://w3id.org/i40/aml/hasVersion>
+                "1.0" .
