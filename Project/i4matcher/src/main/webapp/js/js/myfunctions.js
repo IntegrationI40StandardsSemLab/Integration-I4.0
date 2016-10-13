@@ -1,14 +1,14 @@
-var numberOfFiles = 0;
+var numberOfFiles = 0;  // checks the number of uploaded files (global variable)
 var dataType;
 
-function submitFormFunc() {
+function submitFormFunc() {  // on submiting 2 files
     var form = document.forms.submitForm;
-    var formData = new FormData(form);
-	var selection = $("#matchingChoice option:selected").val();
-    $("#submitButton").html('<img src="img/upload.gif" class="uploadGif"/>');
+    var formData = new FormData(form);  // special type for multiple file upload
+	var selection = $("#matchingChoice option:selected").val();  // saving the way of matching
+    $("#submitButton").html('<img src="img/upload.gif" class="uploadGif"/>');  // showing load image
     var xhr = new XMLHttpRequest();
 	var postURL = '';
-	switch(selection) {
+	switch(selection) {  // depending on the way of matching
 		case 'str': 
 			postURL = "rest/controller/upload"; //\/matching/strict
 			break;
@@ -27,21 +27,20 @@ function submitFormFunc() {
         if (xhr.readyState == 3) {
             if(xhr.status == 200) {
                 data = xhr.responseText;
-				responseData = JSON.parse(data);
-                if (responseData.response) {
+				responseData = JSON.parse(data);  // reading the response of the server
+                if (responseData.response) {  // if response exists
                     console.log('successful submit');
 					var dataInt = responseData.response;
 					$.get('http://localhost:8890/sparql?default-graph-uri=&query=select+*+from+%3Cjdbc%3Avirtuoso%3A%2F%2Flocalhost%3A1111%2F'+dataInt+'%3E+where+%7B+%3Fs+%3Fp+%3Fo+%7D&format=application%2Fsparql-results%2Bjson&timeout=0&debug=on', function (dataGet){
-						var key = Date.now();
-						localStorage[key] = "data:;base64,77u/"+btoa(JSON.stringify(dataGet));
+						var key = Date.now();  // creating a key for saving in cash (current date)
+						localStorage[key] = "data:;base64,77u/"+btoa(JSON.stringify(dataGet));  // saving json file to cash (in base64 format)
 						console.log('successful request for integrated file');
+						// inserting into the page all the information about the integrated file
 						$("#downloadArea").append('Integrated file has been created. <p>Choose the file format for downloading: <select name="type" id="choice"><option selected value="json">JSON</option><option value="ttl">Turtle</option><option value="xml">XML</option><option value="html">HTML</option></select> <input type="button" onclick="downloadInt('+dataInt+')" value="Download"/>');
-						//$("#downloadArea").append('');
                         $("#submitButton").html('');
                         $("#submitButton").append('<div class="queryTrialZone"><label>You can see the visualization of the integrated file <a href="tree.html?type=json&key='+key+'" target="_blank" >here.</a> <p>In order to retrieve any specific information, input your SPARQL query below:</label><br /><textarea class="queryField" placeholder=\'select * from $table$ where { ?s ?p ?o }\'></textarea><br><input type="button" onclick="getQuery('+dataInt+')" value="Run Query"/><span class="comment">*use $table$ as a table name</span></div><div class="moreInfo"></div>');
-						$("#submitButton").append('');
 					});
-                } else {
+                } else {  // in case server doesn't respond correctly
                     $("#submitButton").html('Something went wrong! Try to reload the page!');
                 }
             }
@@ -53,12 +52,14 @@ function submitFormFunc() {
     }
     xhr.send(formData);
 }
-function downloadInt(dataInt) {
-    var selection = $("#choice option:selected").val();
+
+function downloadInt(dataInt) {  // for downloading integrated file
+    var selection = $("#choice option:selected").val();  // saving the type of the file to save in
+	// creating a get request
     var query = encodeURI('select * from <jdbc:virtuoso://localhost:1111/'+dataInt+'> where { ?s ?p ?o} ');
 	var format = '';
 	var dataType = '';
-	switch(selection) {
+	switch(selection) {  // depending on selected type
 		case 'json': 
 			format = 'application/sparql-results%2Bjson';
 			dataType = 'json';
@@ -84,18 +85,19 @@ function downloadInt(dataInt) {
 	var tmpURL = 'http://localhost:8890/sparql?default-graph-uri=&query='+query+'&format='+format+'&timeout='+timeout+'&debug='+debug;
     $.get('http://localhost:8890/sparql?default-graph-uri=&query='+query+'&format='+format+'&timeout='+timeout+'&debug='+debug, function (data){
         console.log(data);
-        $("#downloadArea").html=('');
+        $("#downloadArea").html=('');  // appending the information about produced content
         $("#downloadArea").append('<a href="data:;base64,77u/'+btoa(data)+'" download="integrated_file.'+dataType+'" id="downloadInt'+dataType+'" class="hiddenLink"></a>');
         document.getElementById("downloadInt"+dataType).click();
     }, "text");
 }
-function getQuery(dataInt) {
+
+function getQuery(dataInt) {  // for sending SPARQL query
     var query = encodeURI($(".queryField").val()).replace('$table$','<jdbc:virtuoso://localhost:1111/'+dataInt+'>');
     console.log(query);
     $.get('http://localhost:8890/sparql?default-graph-uri=&query='+query+'&format=application%2Fsparql-results%2Bjson&timeout=0&debug=on', function (data){
         console.log('successful request for query');
-        var key = Date.now();
-        localStorage[key] = "data:;base64,77u/"+btoa(data.replace('\n',''));
+        var key = Date.now();  // creating a key for saving into cash
+        localStorage[key] = "data:;base64,77u/"+btoa(data.replace('\n',''));  // saving into cash (in base64 format)
         $('.moreInfo').html('');
         setTimeout(function(){$('.moreInfo').html('<a href="tree.html?type=json&key='+key+'" target="_blank" >Visualization</a></br><a href="data:;base64,77u/'+btoa(data)+'" target="_blank" download="query_result.json">Download the result in JSON</a>');}, 500);
     }, "text");

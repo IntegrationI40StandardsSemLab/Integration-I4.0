@@ -51,7 +51,7 @@ function readTextFile(file){
 	return allText;
 }
 
-function objInit(id, parent, children, depth, name, tag, type, value, extra) {
+function objInit(id, parent, children, depth, name, tag, type, value, extra) {  // object initializing
 	var obj = new Object();
 	obj.id = id;
 	obj.parent = parent;
@@ -65,21 +65,15 @@ function objInit(id, parent, children, depth, name, tag, type, value, extra) {
 	return obj;
 }
 
-function JSONToArray(newObj) {
+function JSONToArray(newObj) {  // creating an array of all objects that needed to be visualized
 	var totalIdNum = 1;
 	var mapArray = [];
 	var rootObj = new Object();
 	rootObj = objInit(totalIdNum, 0, [], 0, 'results', '', '', '', '');
 	mapArray.push(rootObj);
 	for (var i=0; i<newObj.results.bindings.length; i++) {
-		/*totalIdNum += 1;
-		rootObj.children.push(totalIdNum);
-		var bindObj = new Object();
-		bindObj = objInit(totalIdNum, 1, [], 1, 'binding ' + (i+1), '', '', '', '');
-		mapArray.push(bindObj);
-		var tempInd = totalIdNum;*/
 		var depth = 1;
-		if (newObj.results.bindings[i].s) {
+		if (newObj.results.bindings[i].s) {  //subject
 			totalIdNum += 1;
 			rootObj.children.push(totalIdNum);
 			var subjectObj = new Object();
@@ -87,7 +81,7 @@ function JSONToArray(newObj) {
 			mapArray.push(subjectObj);
 			depth += 1;
 		}
-		if (newObj.results.bindings[i].p) {
+		if (newObj.results.bindings[i].p) {  // predicate
 			totalIdNum += 1;
 			subjectObj.children.push(totalIdNum);
 			var predicatObj = new Object();
@@ -95,7 +89,7 @@ function JSONToArray(newObj) {
 			mapArray.push(predicatObj);
 			depth += 1;
 		}
-		if (newObj.results.bindings[i].o) {
+		if (newObj.results.bindings[i].o) {  // object
 			totalIdNum += 1;
 			predicatObj.children.push(totalIdNum);
 			var objectObj = new Object();
@@ -215,7 +209,7 @@ function XMLToArray(text) {
 	return tagArray;
 }
 
-function arrayMapping(tagArray, impNodes, impAttr) {
+function arrayMapping(tagArray, impNodes, impAttr) {  // parsing all the information inside the array
 	var mapArray = attrTrans(tagArray, impAttr);
 	if (impNodes.length) {
 		var extra = new Object();
@@ -262,7 +256,7 @@ function arrayMapping(tagArray, impNodes, impAttr) {
 	return mapArray;
 }
 
-function attrTrans(tagArray, impAttr) {
+function attrTrans(tagArray, impAttr) {  // dealing with attributes of the objects
 	for (var i=0; i<tagArray.length; i++) {
 		var tagString = tagArray[i].tag;
 		var type = '';
@@ -297,7 +291,7 @@ function attrTrans(tagArray, impAttr) {
 	return tagArray;
 }
 
-function arrayToJSON(tagArray) {
+function arrayToJSON(tagArray) {  // converting array to json type
 	var JSONText = [];
 	var root = new Object();				
 	root = objToJSON(tagArray, 0, false);
