@@ -15,6 +15,7 @@
 			var urlInd = url.search("&");
 			var type = url.substring(typeInd+1, urlInd);
 			var value = localStorage[url.substring(urlInd+5, url.length)];
+			console.log(value);
 			if (type == 'aml') {
 				xmltotree("chart1", value, ["InstanceHierarchy", "InterfaceClassLib", "SystemUnitClassLib", "RoleClassLib"], ["SchemaVersion"], 0);
 			} else if (type == 'opcua') {

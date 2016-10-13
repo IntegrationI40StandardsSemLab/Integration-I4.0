@@ -14,7 +14,7 @@
         <https://w3id.org/i40/aml/hasExternalReference>
                 <https://w3id.org/i40/aml/ExternalReference1> , <https://w3id.org/i40/aml/ExternalReference2> ;
         <https://w3id.org/i40/aml/hasFileName>
-                "Topology.aml" ;
+                "ExampleTopology.aml" ;
         <https://w3id.org/i40/aml/hasInstanceHierarchy>
                 <https://w3id.org/i40/aml/InstanceHierarchy1> ;
         <https://w3id.org/i40/aml/hasInterfaceClassLib>
@@ -60,15 +60,6 @@
         <https://w3id.org/i40/aml/refBaseClassPath>
                 "Libs/RoleClass Libraries/AutomationMLBaseRoleClassLib.aml" .
 
-<https://w3id.org/i40/aml/ExternalInterface4>
-        a       <https://w3id.org/i40/aml/ExternalInterface> ;
-        <http://purl.org/dc/elements/1.1/identifier>
-                "dd0e0dfe-10f8-4068-845b-9c29699ac79b" ;
-        <https://w3id.org/i40/aml/hasAttributeName>
-                "EnergySupply" ;
-        <https://w3id.org/i40/aml/refBaseClassPath>
-                "MyInterfaces/Energy" .
-
 <https://w3id.org/i40/aml/InternalElement1>
         a       <https://w3id.org/i40/aml/InternalElement> ;
         <http://purl.org/dc/elements/1.1/identifier>
@@ -89,7 +80,7 @@
 <https://w3id.org/i40/aml/ExternalInterface3>
         a       <https://w3id.org/i40/aml/ExternalInterface> ;
         <http://purl.org/dc/elements/1.1/identifier>
-                "50e10905-ac18-413c-afab-ad8ed1569fff" ;
+                "dd0e0dfe-10f8-4068-845b-9c29699ac79b" ;
         <https://w3id.org/i40/aml/hasAttributeName>
                 "EnergySupply" ;
         <https://w3id.org/i40/aml/refBaseClassPath>
@@ -100,14 +91,9 @@
         <https://w3id.org/i40/aml/hasAttributeName>
                 "ElectricScrewdriver" ;
         <https://w3id.org/i40/aml/hasExternalInterface>
-                <https://w3id.org/i40/aml/ExternalInterface4> ;
+                <https://w3id.org/i40/aml/ExternalInterface3> ;
         <https://w3id.org/i40/aml/hasSupportedRoleClass>
-                <https://w3id.org/i40/aml/SupportedRoleClass4> .
-
-<https://w3id.org/i40/aml/SupportedRoleClass4>
-        a       <https://w3id.org/i40/aml/SupportedRoleClass> ;
-        <https://w3id.org/i40/aml/refRoleClassPath>
-                "ManufacturingRoleClasses/Tool" .
+                <https://w3id.org/i40/aml/SupportedRoleClass3> .
 
 <https://w3id.org/i40/aml/ExternalInterface2>
         a       <https://w3id.org/i40/aml/ExternalInterface> ;
@@ -123,7 +109,7 @@
         <https://w3id.org/i40/aml/hasAttributeName>
                 "ManufacturingSystem" ;
         <https://w3id.org/i40/aml/hasInternalElement>
-                <https://w3id.org/i40/aml/InternalElement1> , <https://w3id.org/i40/aml/InternalElement2> , <https://w3id.org/i40/aml/InternalElement3> .
+                <https://w3id.org/i40/aml/InternalElement1> , <https://w3id.org/i40/aml/InternalElement2> .
 
 <https://w3id.org/i40/aml/Attribute1>
         a       <https://w3id.org/i40/aml/Attribute> ;
@@ -165,11 +151,6 @@
         <https://w3id.org/i40/aml/hasWriterVersion>
                 "1.0" .
 
-<https://w3id.org/i40/aml/RoleRequirements3>
-        a       <https://w3id.org/i40/aml/RoleRequirements> ;
-        <https://w3id.org/i40/aml/refBaseRoleClassPath>
-                "ManufacturingRoleClasses/Tool" .
-
 <https://w3id.org/i40/aml/RoleClass1>
         a       <https://w3id.org/i40/aml/RoleClass> ;
         <https://w3id.org/i40/aml/hasAttributeName>
@@ -198,21 +179,6 @@
         a       <https://w3id.org/i40/aml/RoleRequirements> ;
         <https://w3id.org/i40/aml/refBaseRoleClassPath>
                 "ManufacturingRoleClasses/Tool" .
-
-<https://w3id.org/i40/aml/InternalElement3>
-        a       <https://w3id.org/i40/aml/InternalElement> ;
-        <http://purl.org/dc/elements/1.1/identifier>
-                "{19dcf818-4716-4fc1-a85f-28e1938c4c3a}" ;
-        <https://w3id.org/i40/aml/RefBaseSystemUnitPath>
-                "LibOfCommonTools/ElectricScrewdriver" ;
-        <https://w3id.org/i40/aml/hasAttributeName>
-                "thirdScrewdriver" ;
-        <https://w3id.org/i40/aml/hasExternalInterface>
-                <https://w3id.org/i40/aml/ExternalInterface3> ;
-        <https://w3id.org/i40/aml/hasRoleRequirements>
-                <https://w3id.org/i40/aml/RoleRequirements3> ;
-        <https://w3id.org/i40/aml/hasSupportedRoleClass>
-                <https://w3id.org/i40/aml/SupportedRoleClass3> .
 
 <https://w3id.org/i40/aml/SupportedRoleClass1>
         a       <https://w3id.org/i40/aml/SupportedRoleClass> ;

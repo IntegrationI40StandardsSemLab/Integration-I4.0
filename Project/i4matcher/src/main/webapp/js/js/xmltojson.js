@@ -6,8 +6,10 @@ function xmltotree(divClass, file, impNodes, impAttr, ifJSON) {
 		var JSONText = arrayToJSON(mapArray);  // converts array into a JSON file
 		if (newObj.results.bindings.length > 4) {
 			drawTree(divClass, JSONText, newObj.results.bindings.length*2, 5);
+			//return "good";
 		} else {
 			drawTree(divClass, JSONText, 6, 5);
+			//return "good";
 		}
 	} else {
 		var XMLText = readTextFile(file);
@@ -30,6 +32,7 @@ function xmltotree(divClass, file, impNodes, impAttr, ifJSON) {
 		maxDepth = Math.max.apply(null, depthArray);
 		divClass = "."+divClass;
 		drawTree(divClass, JSONText, maxDepth, maxWidth);
+		//return "good";
 	}
 }
 
