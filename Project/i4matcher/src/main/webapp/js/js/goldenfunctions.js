@@ -1,7 +1,6 @@
 var numberOfFiles = 0;
 var dataType;
 
-
 function submitFormFunc() {
     var form = document.forms.submitForm;
     var formData = new FormData(form);
@@ -36,11 +35,10 @@ function submitFormFunc() {
 						var key = Date.now();
 						localStorage[key] = "data:;base64,77u/"+btoa(JSON.stringify(dataGet));
 						console.log('successful request for integrated file');
-						//uncomment line 40 only for testing zone!
-						//$("#downloadArea").append('<a href="qunit.html?type=aml&key=1476383356415">Testing Zone</a><br/>');
 						$("#downloadArea").append('Integrated file has been created. <p>Choose the file format for downloading: <select name="type" id="choice"><option selected value="json">JSON</option><option value="ttl">Turtle</option><option value="xml">XML</option><option value="html">HTML</option></select> <input type="button" onclick="downloadInt('+dataInt+')" value="Download"/>');
+						//$("#downloadArea").append('');
                         $("#submitButton").html('');
-                        $("#submitButton").append('<div class="queryTrialZone"><label>You can see the visualization of the integrated file <a href="tree.html?type=json&key='+key+'" target="_blank" >here.</a> <p>In order to retrieve any specific information, input your SPARQL query below:</label><br /><textarea class="queryField" placeholder=\'select * from $table$ where { ?s ?p ?o }\'></textarea><br><input type="button" onclick="getQuery('+dataInt+')" value="Run Query"/><span class="comment">*use $table$ as a table name</span></div><div class="moreInfo"></div>');
+                        $("#submitButton").append('<a href="matching.html?data=" target="_blank">Visualize the discrepancies</a>');
 						$("#submitButton").append('');
 					});
                 } else {
@@ -89,17 +87,6 @@ function downloadInt(dataInt) {
         $("#downloadArea").html=('');
         $("#downloadArea").append('<a href="data:;base64,77u/'+btoa(data)+'" download="integrated_file.'+dataType+'" id="downloadInt'+dataType+'" class="hiddenLink"></a>');
         document.getElementById("downloadInt"+dataType).click();
-    }, "text");
-}
-function getQuery(dataInt) {
-    var query = encodeURI($(".queryField").val()).replace('$table$','<jdbc:virtuoso://localhost:1111/'+dataInt+'>');
-    console.log(query);
-    $.get('http://localhost:8890/sparql?default-graph-uri=&query='+query+'&format=application%2Fsparql-results%2Bjson&timeout=0&debug=on', function (data){
-        console.log('successful request for query');
-        var key = Date.now();
-        localStorage[key] = "data:;base64,77u/"+btoa(data.replace('\n',''));
-        $('.moreInfo').html('');
-        setTimeout(function(){$('.moreInfo').html('<a href="tree.html?type=json&key='+key+'" target="_blank" >Visualization</a></br><a href="data:;base64,77u/'+btoa(data)+'" target="_blank" download="query_result.json">Download the result in JSON</a>');}, 500);
     }, "text");
 }
 
