@@ -4,13 +4,16 @@ var dataType;
 function submitFormFunc() {  // on submiting 2 files
     var form = document.forms.submitForm;
     var formData = new FormData(form);  // special type for multiple file upload
+	/*var xhr = new XMLHttpRequest;
+	xhr.open('POST', '/', true);
+	xhr.send(formData);*/
 	var selection = $("#matchingChoice option:selected").val();  // saving the way of matching
     $("#submitButton").html('<img src="img/upload.gif" class="uploadGif"/>');  // showing load image
     var xhr = new XMLHttpRequest();
 	var postURL = '';
 	switch(selection) {  // depending on the way of matching
 		case 'str': 
-			postURL = "rest/controller/upload/strict"; //
+			postURL = "rest/controller/upload/strict";
 			break;
 		case 'sft':
 			postURL = "rest/controller/upload/soft";

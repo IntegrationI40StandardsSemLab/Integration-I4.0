@@ -19,35 +19,17 @@
         <li class="nav-item">
           <a class="nav-link" href="project.html">Project</a>
         </li>
-		<li class="nav-item active">
+		<!--li class="nav-item active">
           <a class="nav-link" href="golden.html">Gold Standard<span class="sr-only">(current)</span></a>
-        </li>
+        </li-->
       </ul>
     </nav>
 
     <div class="container marketing">
         <!--  -->
       <form method="POST" id="submitForm" enctype="multipart/form-data" onsubmit="submitFormFunc()" target="responseFrame">
-        <table class="contentTable">
-          <tr>
-            <td>
-              <div id="content1">
-                <span id="descr1">Select .aml/.opcua file to upload:</span>
-                <input type="file" id="file1" name="file1"/>
-              </div>
-            </td>
-            <td>
-              <div id="content2">
-                <span id="descr2">Select .aml/.opcua file to upload:</span>
-                <input type="file" id="file2" name="file2"/>
-              </div>
-            </td>
-          </tr>
-        </table>
-		<br>
-		<div id="downloadArea">
-        </div>
-        <div id="submitButton">
+        <div id="contentArea">
+			<img src="img/gold_upload.gif" class="uploadGif"/>
         </div>
       </form>
       <iframe id="responseFrame"  name="responseFrame">
