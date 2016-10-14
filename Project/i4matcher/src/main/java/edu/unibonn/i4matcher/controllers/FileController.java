@@ -2,7 +2,6 @@ package edu.unibonn.i4matcher.controllers;
 
 import java.io.*;
 import java.net.URLDecoder;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -68,8 +67,8 @@ public class FileController {
 				 //InputStream is = new ByteArrayInputStream(mpf.getBytes());
 
 				 validator.validateAgainstXSD(new ByteArrayInputStream(fileMeta.getBytes()));
-				 Kreker pecker = new Kreker();
-				 byte[] ttl = pecker.krekerize(new ByteArrayInputStream(fileMeta.getBytes()), schema);
+				 RDFTransformer pecker = new RDFTransformer();
+				 byte[] ttl = pecker.transform(new ByteArrayInputStream(fileMeta.getBytes()), schema);
                  fileMeta.setTtl(ttl);
 				 //is.close();
 			 } catch (Exception ex){

@@ -196,6 +196,8 @@
 	                  |CAEXFile/RoleClassLib/RoleClass/@Name
 					  |CAEXFile/RoleClassLib/RoleClass/Attribute/@Name
 					  |CAEXFile/RoleClassLib/RoleClass/Attribute/Value
+					  |CAEXFile/RoleClassLib/RoleClass/Attribute/Attribute/@Name
+					  |CAEXFile/RoleClassLib/RoleClass/Attribute/Attribute/Value
 	                  |CAEXFile/RoleClassLib/RoleClass/@RefBaseClassPath
 	                  |CAEXFile/SystemUnitClassLib/@Name
 	                  |CAEXFile/SystemUnitClassLib/Version
