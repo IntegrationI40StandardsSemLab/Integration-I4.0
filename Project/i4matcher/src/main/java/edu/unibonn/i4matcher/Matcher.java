@@ -16,6 +16,10 @@ import java.util.LinkedList;
  * Created by Alina on 9/7/2016.
  */
 public class Matcher {
+    private String matchLevel;
+    public Matcher(String value){
+        this.matchLevel = value;
+    }
 
     public Model match2Files (LinkedList<FileMeta> files) throws IOException {
 
@@ -32,14 +36,26 @@ public class Matcher {
         FileWriter matchFile = new FileWriter(matchFileName);
 
         //matching process (strict, soft, non-strict)
+
         for(Statement statement1 : fileMap1){
             for(Statement statement2: fileMap2){
-                if(statement1.getSubject().equals(statement2.getSubject())){
-                    model.add(statement1.getSubject(), statement1.getPredicate(), statement1.getObject());
-                    model.add(statement1.getSubject(), statement2.getPredicate(), statement2.getObject());
+                if("strict".equals(matchLevel) && statement1.equals(statement2) ){
+                            model.add(statement1);
+                }
+                if("soft".equals(matchLevel) && (statement1.getSubject().equals(statement2.getSubject()))
+                                && (statement1.getPredicate().equals(statement2.getPredicate())) ){
+
+                            model.add(statement1.getSubject(), statement1.getPredicate(), statement1.getObject());
+                            model.add(statement1.getSubject(), statement2.getPredicate(), statement2.getObject());
+                }
+                if("nonstrict".equals(matchLevel) && statement1.getSubject().equals(statement2.getSubject())){
+
+                            model.add(statement1.getSubject(), statement1.getPredicate(), statement1.getObject());
+                            model.add(statement1.getSubject(), statement1.getPredicate(), statement2.getObject());
                 }
             }
         }
+
         model.write(matchFile, "TTL") ;
         return model;
     }

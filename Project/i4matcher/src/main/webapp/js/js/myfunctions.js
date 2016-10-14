@@ -10,13 +10,13 @@ function submitFormFunc() {  // on submiting 2 files
 	var postURL = '';
 	switch(selection) {  // depending on the way of matching
 		case 'str': 
-			postURL = "rest/controller/upload"; //\/matching/strict
+			postURL = "rest/controller/upload/strict"; //
 			break;
 		case 'sft':
-			postURL = "rest/controller/upload/matching/soft";
+			postURL = "rest/controller/upload/soft";
 			break;
 		case 'non':
-			postURL = "rest/controller/upload/matching/nonstrict";
+			postURL = "rest/controller/upload/nonstrict";
 			break;
 		default:
 			console.log("unknown matching choice");

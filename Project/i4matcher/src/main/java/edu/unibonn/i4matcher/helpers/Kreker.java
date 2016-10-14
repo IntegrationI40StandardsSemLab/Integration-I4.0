@@ -7,7 +7,8 @@ import net.sf.saxon.CollectionURIResolver;
 import net.sf.saxon.Configuration;
 import net.sf.saxon.FeatureKeys;
 import net.sf.saxon.om.SequenceIterator;
-
+import net.sf.saxon.trace.XSLTTraceListener;
+import net.sf.saxon.TransformerFactoryImpl;
 
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
@@ -27,7 +28,7 @@ public class Kreker {
         // use Saxon as XSLT transformer
         System.setProperty("java.xml.transform.TransformerFactory",
                 "net.sf.saxon.TransformerFactoryImpl");
-        System.setProperty("javax.xml.transform.TransformerFactory",
+       System.setProperty("javax.xml.transform.TransformerFactory",
                 "net.sf.saxon.TransformerFactoryImpl");
         // and as XPath processor
         System.setProperty("javax.xml.xpath.XPathFactory",
@@ -49,7 +50,6 @@ public class Kreker {
 
                 });
         factory.setAttribute(FeatureKeys.CONFIGURATION, saxonConfiguration);
-
     }
     private static boolean isEqual(InputStream i1, InputStream i2)
             throws IOException {
@@ -89,11 +89,16 @@ public class Kreker {
         try {
 
             TransformerFactory tf = TransformerFactory.newInstance();
+            XSLTTraceListener traceListener = new XSLTTraceListener();
+            traceListener.setOutputDestination(new PrintStream("log.txt"));
+            tf.setAttribute(FeatureKeys.TRACE_LISTENER, traceListener);
+
             ClassLoader classLoader = getClass().getClassLoader();
 //            System.out.println(classLoader.getResource(schema + "..turtle.xsl"));
             InputStream xsl = classLoader.getResource(schema + "..turtle.xsl").openStream();
             Transformer transformer = tf.newTransformer(new StreamSource(xsl));
             System.out.print("I am healthy");
+
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             StreamSource xmlSource = new StreamSource(aml);
@@ -113,13 +118,13 @@ public class Kreker {
         }
         return new byte[0];
     }
-/*
+
     public static void main(String[] args) throws IOException {
-        InputStream aml1 = new FileInputStream("C:\\Users\\alink_000\\Desktop\\Uni Bonn\\Lab semantic\\AutomationML Whitepaper - OPCUAforAutomationML_Mar2016/Topology.xml");
+        InputStream aml1 = new FileInputStream("/home/phil/Downloads/Topology.aml");
         //URL res = ClassLoader.getSystemResource("automationML" + "..turtle.xsl");
         //System.out.println(aml1.read());
         Kreker kreker = new Kreker();
-        byte[] out = kreker.krekerize(aml1, "opcua");
+        byte[] out = kreker.krekerize(aml1, "automationML");
         FileOutputStream fos = new FileOutputStream("out.txt");
         fos.write(out);
 
@@ -128,5 +133,5 @@ public class Kreker {
 
 
     }
-*/
+
 }
