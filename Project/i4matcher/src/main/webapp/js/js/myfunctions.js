@@ -10,7 +10,7 @@ function submitFormFunc() {  // on submiting 2 files
 	var postURL = '';
 	switch(selection) {  // depending on the way of matching
 		case 'str': 
-			postURL = "rest/controller/upload"; ///strict
+			postURL = "rest/controller/upload/strict"; //
 			break;
 		case 'sft':
 			postURL = "rest/controller/upload/soft";

@@ -102,10 +102,10 @@ public class FileController {
 	 ****************************************************/
 	@RequestMapping(value = "/get" +
 			"", method = RequestMethod.GET, produces = "application/json")
-	 public void get(HttpServletResponse response,
+	public void get(HttpServletResponse response,
 					 //@PathVariable String value
 					 @RequestParam(value = "query") String qry) {
-//		 FileMeta getFile = files.get(Integer.parseInt(value));
+//
 		SparqlQuery sq = new SparqlQuery();
 		String res = "";
 		try {
@@ -128,6 +128,6 @@ public class FileController {
 			e.printStackTrace();
 		}
 
-	 }
+	}
  
 }

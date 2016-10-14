@@ -36,36 +36,26 @@ public class Matcher {
         FileWriter matchFile = new FileWriter(matchFileName);
 
         //matching process (strict, soft, non-strict)
+
         for(Statement statement1 : fileMap1){
             for(Statement statement2: fileMap2){
-
-
-                switch (this.matchLevel){
-                    case "strict" :
-                        if(statement1.equals(statement2)){
-
+                if("strict".equals(matchLevel) && statement1.equals(statement2) ){
                             model.add(statement1);
-                        }
-                        break;
-                    case "soft":
-                        if((statement1.getSubject().equals(statement2.getSubject()))
+                }
+                if("soft".equals(matchLevel) && (statement1.getSubject().equals(statement2.getSubject()))
                                 && (statement1.getPredicate().equals(statement2.getPredicate())) ){
 
                             model.add(statement1.getSubject(), statement1.getPredicate(), statement1.getObject());
                             model.add(statement1.getSubject(), statement2.getPredicate(), statement2.getObject());
-                        }
-                        break;
-                    case "non-strict":
-                        if(statement1.getSubject().equals(statement2.getSubject())){
+                }
+                if("nonstrict".equals(matchLevel) && statement1.getSubject().equals(statement2.getSubject())){
 
                             model.add(statement1.getSubject(), statement1.getPredicate(), statement1.getObject());
                             model.add(statement1.getSubject(), statement1.getPredicate(), statement2.getObject());
-                        }
-                        break;
                 }
-
             }
         }
+
         model.write(matchFile, "TTL") ;
         return model;
     }
