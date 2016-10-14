@@ -18,17 +18,20 @@ import java.util.LinkedList;
 public class Matcher {
 
     public Model match2Files (LinkedList<FileMeta> files) throws IOException {
+
+        //generate 2 ArrayLists of statements
         ArrayList<Statement> fileMap1 = getStatements(files.get(0).getTtl());
         ArrayList<Statement> fileMap2 = getStatements(files.get(1).getTtl());
 
+        //create empty model for matching results
         Model model = null;
         model = ModelFactory.createDefaultModel();
 
-
-
+        //create integration file
         String matchFileName = "match.ttl";
         FileWriter matchFile = new FileWriter(matchFileName);
 
+        //matching process (strict, soft, non-strict)
         for(Statement statement1 : fileMap1){
             for(Statement statement2: fileMap2){
                 if(statement1.getSubject().equals(statement2.getSubject())){
@@ -43,13 +46,16 @@ public class Matcher {
 
     private ArrayList<Statement> getStatements (byte[] rdfFile){
 
-//        URL ttlFile = ClassLoader.getSystemResource(rdfFile);
-
         try(InputStream inputStream = new ByteArrayInputStream(rdfFile)){
+
+            //create empty model
             Model model = null;
             model = ModelFactory.createDefaultModel();
+
             // parses in turtle format
             model.read(new InputStreamReader(inputStream), null, "TURTLE");
+
+            //generate ArrayList of statements
             StmtIterator iterator = model.listStatements();
             ArrayList<Statement> listStatement = new ArrayList<Statement>();
 
