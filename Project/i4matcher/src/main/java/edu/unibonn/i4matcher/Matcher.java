@@ -51,7 +51,7 @@ public class Matcher {
                 if("nonstrict".equals(matchLevel) && statement1.getSubject().equals(statement2.getSubject())){
 
                             model.add(statement1.getSubject(), statement1.getPredicate(), statement1.getObject());
-                            model.add(statement1.getSubject(), statement1.getPredicate(), statement2.getObject());
+                            model.add(statement1.getSubject(), statement2.getPredicate(), statement2.getObject());
                 }
             }
         }
