@@ -1,0 +1,268 @@
+<https://w3id.org/i40/instance#NodeIdAlias12>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "DateTime" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=13" .
+
+<https://w3id.org/i40/instance#NodeIdAlias25>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "UInteger" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=28" .
+
+<https://w3id.org/i40/instance#NodeIdAlias4>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "Int16" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=4" .
+
+<https://w3id.org/i40/instance#NodeIdAlias32>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "HasTypeDefinition" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=40" .
+
+<https://w3id.org/i40/instance#NodeIdAlias17>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "NodeId" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=17" .
+
+<https://w3id.org/i40/instance#NodeIdAlias11>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "Double" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=11" .
+
+<https://w3id.org/i40/instance#NodeIdAlias9>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "UInt64" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=9" .
+
+<https://w3id.org/i40/instance#NodeIdAlias24>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "Integer" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=27" .
+
+<https://w3id.org/i40/instance#NodeIdAlias3>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "Byte" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=3" .
+
+<https://w3id.org/i40/instance#NodeIdAlias31>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "HasSubtype" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=45" .
+
+<https://w3id.org/i40/instance#NodeIdAlias16>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "XmlElement" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=16" .
+
+<https://w3id.org/i40/instance#NodeIdAlias29>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "HasEventSource" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=36" .
+
+<https://w3id.org/i40/instance#NodeIdAlias10>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "Float" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=10" .
+
+<https://w3id.org/i40/instance#NodeIdAlias8>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "Int64" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=8" .
+
+<https://w3id.org/i40/instance#NodeIdAlias23>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "Number" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=26" .
+
+<https://w3id.org/i40/instance#UriTable1>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#UriTable> ;
+        <https://w3id.org/i40/instance#hasUri>
+                "http://www.iosb.fraunhofer.de/Topology.aml" , "http://opcfoundation.org/UA/AML/" .
+
+<https://w3id.org/i40/instance#NodeIdAlias36>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "Duration" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=290" .
+
+<https://w3id.org/i40/instance#NodeIdAlias2>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "SByte" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=2" .
+
+<https://w3id.org/i40/instance#NodeIdAlias30>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "HasNotifier" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=48" .
+
+<https://w3id.org/i40/instance#NodeIdAlias15>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "Guid" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=14" .
+
+<https://w3id.org/i40/instance#NodeIdAlias28>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "Organizes" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=35" .
+
+<https://w3id.org/i40/instance#NodeIdAlias7>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "UInt32" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=7" .
+
+<https://w3id.org/i40/instance#NodeIdAlias22>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "Structure" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=22" .
+
+<https://w3id.org/i40/instance#NodeIdAlias35>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "HasDescription" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=39" .
+
+<https://w3id.org/i40/instance#NodeIdAlias1>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "Boolean" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=1" .
+
+<https://w3id.org/i40/instance#UANodeSet1>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#UANodeSet> ;
+        <https://w3id.org/i40/instance#Aliases>
+                <https://w3id.org/i40/instance#AliasTable1> ;
+        <https://w3id.org/i40/instance#NamespaceUris>
+                <https://w3id.org/i40/instance#UriTable1> .
+
+<https://w3id.org/i40/instance#AliasTable1>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#AliasTable> ;
+        <https://w3id.org/i40/instance#Alias>
+                <https://w3id.org/i40/instance#NodeIdAlias10> , <https://w3id.org/i40/instance#NodeIdAlias5> , <https://w3id.org/i40/instance#NodeIdAlias27> , <https://w3id.org/i40/instance#NodeIdAlias4> , <https://w3id.org/i40/instance#NodeIdAlias34> , <https://w3id.org/i40/instance#NodeIdAlias1> , <https://w3id.org/i40/instance#NodeIdAlias31> , <https://w3id.org/i40/instance#NodeIdAlias7> , <https://w3id.org/i40/instance#NodeIdAlias12> , <https://w3id.org/i40/instance#NodeIdAlias33> , <https://w3id.org/i40/instance#NodeIdAlias22> , <https://w3id.org/i40/instance#NodeIdAlias30> , <https://w3id.org/i40/instance#NodeIdAlias11> , <https://w3id.org/i40/instance#NodeIdAlias6> , <https://w3id.org/i40/instance#NodeIdAlias36> , <https://w3id.org/i40/instance#NodeIdAlias21> , <https://w3id.org/i40/instance#NodeIdAlias14> , <https://w3id.org/i40/instance#NodeIdAlias9> , <https://w3id.org/i40/instance#NodeIdAlias18> , <https://w3id.org/i40/instance#NodeIdAlias24> , <https://w3id.org/i40/instance#NodeIdAlias35> , <https://w3id.org/i40/instance#NodeIdAlias2> , <https://w3id.org/i40/instance#NodeIdAlias13> , <https://w3id.org/i40/instance#NodeIdAlias8> , <https://w3id.org/i40/instance#NodeIdAlias23> , <https://w3id.org/i40/instance#NodeIdAlias16> , <https://w3id.org/i40/instance#NodeIdAlias20> , <https://w3id.org/i40/instance#NodeIdAlias26> , <https://w3id.org/i40/instance#NodeIdAlias15> , <https://w3id.org/i40/instance#NodeIdAlias19> , <https://w3id.org/i40/instance#NodeIdAlias29> , <https://w3id.org/i40/instance#NodeIdAlias3> , <https://w3id.org/i40/instance#NodeIdAlias25> , <https://w3id.org/i40/instance#NodeIdAlias28> , <https://w3id.org/i40/instance#NodeIdAlias32> , <https://w3id.org/i40/instance#NodeIdAlias17> .
+
+<https://w3id.org/i40/instance#NodeIdAlias14>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "ByteString" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=15" .
+
+<https://w3id.org/i40/instance#NodeIdAlias27>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "HasProperty" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=46" .
+
+<https://w3id.org/i40/instance#NodeIdAlias6>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "Int32" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=6" .
+
+<https://w3id.org/i40/instance#NodeIdAlias21>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "StatusCode" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=19" .
+
+<https://w3id.org/i40/instance#NodeIdAlias34>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "HasEncoding" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=38" .
+
+<https://w3id.org/i40/instance#NodeIdAlias19>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "QualifiedName" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=20" .
+
+<https://w3id.org/i40/instance#NodeIdAlias13>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "String" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=12" .
+
+<https://w3id.org/i40/instance#NodeIdAlias26>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "HasComponent" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=47" .
+
+<https://w3id.org/i40/instance#NodeIdAlias5>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "UInt16" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=5" .
+
+<https://w3id.org/i40/instance#NodeIdAlias20>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "LocalizedText" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=21" .
+
+<https://w3id.org/i40/instance#NodeIdAlias33>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "HasModellingRule" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=37" .
+
+<https://w3id.org/i40/instance#NodeIdAlias18>
+        a       <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#NodeIdAlias> ;
+        <https://w3id.org/i40/instance#hasAlias>
+                "ExpandedNodeId" ;
+        <https://w3id.org/i40/instance#hasTextContent>
+                "i=18" .
