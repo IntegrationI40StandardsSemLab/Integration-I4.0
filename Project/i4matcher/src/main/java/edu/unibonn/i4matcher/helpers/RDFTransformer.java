@@ -94,6 +94,7 @@ public class RDFTransformer {
 
             ClassLoader classLoader = getClass().getClassLoader();
 //            System.out.println(classLoader.getResource(schema + "..turtle.xsl"));
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
             if ("opcua".equals(schema)){
                 XSD2OWLMapper mapping = new XSD2OWLMapper(new File("src/main/resources/opcua.xsd"));
                 mapping.setObjectPropPrefix("");

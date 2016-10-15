@@ -26,7 +26,7 @@ import edu.unibonn.i4matcher.helpers.*;
 import edu.unibonn.i4matcher.Matcher;
 @Controller
 @RequestMapping("/controller")
-public class FileController  extends HttpServlet {
+public class FileController  extends HttpServlet  {
 	LinkedList<FileMeta> files = new LinkedList<FileMeta>();
 	FileMeta fileMeta = null;
 	/***************************************************
@@ -80,7 +80,7 @@ public class FileController  extends HttpServlet {
 				 //InputStream is = new ByteArrayInputStream(mpf.getBytes());
 
 				 validator.validateAgainstXSD(new ByteArrayInputStream(fileMeta.getBytes()));
-				 RDFTransformer pecker = new RDFTransformer(path);
+				 RDFTransformer pecker = new RDFTransformer();
 				 System.out.println("Transformed to AML");
 				 byte[] ttl = pecker.transform(new ByteArrayInputStream(fileMeta.getBytes()), schema);
                  fileMeta.setTtl(ttl);
