@@ -5,6 +5,7 @@ import java.net.URLDecoder;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 //import javax.json;
 
@@ -40,7 +41,11 @@ public class FileController {
 			MultipartHttpServletRequest request,
 			HttpServletResponse response,
 			@PathVariable String value) {
- 		System.out.println(request.getRequestHeaders().toString());
+		ServletContext servletContext = request.getSession().getServletContext();
+//		String path = servletContext.getRealPath("/WEB-INF/classes/");
+		String path = "/home/phil/workspace/Integration-I4.0/Project/i4matcher/target/classes/";
+		System.out.println(path);
+		System.out.println(request.getRequestHeaders().toString());
 		//1. build an iterator
 		 Iterator<String> itr =  request.getFileNames();
 		 MultipartFile mpf;
@@ -67,7 +72,8 @@ public class FileController {
 				 //InputStream is = new ByteArrayInputStream(mpf.getBytes());
 
 				 validator.validateAgainstXSD(new ByteArrayInputStream(fileMeta.getBytes()));
-				 RDFTransformer pecker = new RDFTransformer();
+				 RDFTransformer pecker = new RDFTransformer(path);
+				 System.out.println("Transformed to AML");
 				 byte[] ttl = pecker.transform(new ByteArrayInputStream(fileMeta.getBytes()), schema);
                  fileMeta.setTtl(ttl);
 				 //is.close();
@@ -81,6 +87,7 @@ public class FileController {
         Matcher matcher = new Matcher(value);
         try {
             Model model = matcher.match2Files(files);
+			System.out.println("Matched two files");
             TripleStoreWriter writer = new TripleStoreWriter();
             String ret = writer.write(model);
             Response resp = new Response(ret);

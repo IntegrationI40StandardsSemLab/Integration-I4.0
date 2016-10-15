@@ -32,8 +32,8 @@ public class Matcher {
         model = ModelFactory.createDefaultModel();
 
         //create integration file
-        String matchFileName = "match.ttl";
-        FileWriter matchFile = new FileWriter(matchFileName);
+        //String matchFileName = "match.ttl";
+        //FileWriter matchFile = new FileWriter(matchFileName);
 
         //matching process (strict, soft, non-strict)
 
@@ -56,7 +56,7 @@ public class Matcher {
             }
         }
 
-        model.write(matchFile, "TTL") ;
+        //model.write(matchFile, "TTL") ;
         return model;
     }
 

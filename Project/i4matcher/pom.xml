@@ -68,6 +68,13 @@
 			<artifactId>saxon</artifactId>
 			<version>9.1.0.8</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/jdom/jdom -->
+		<dependency>
+			<groupId>jdom</groupId>
+			<artifactId>jdom</artifactId>
+			<version>1.1</version>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/net.sf.saxon/Saxon-HE -->
 		<dependency>
 			<groupId>net.sf.saxon</groupId>
@@ -155,7 +162,24 @@
 					  <target>1.7</target>
 				  </configuration>
 			  </plugin>
-
+			  <plugin>
+				  <groupId>org.apache.maven.plugins</groupId>
+				  <artifactId>maven-dependency-plugin</artifactId>
+				  <version>2.8</version>
+				  <executions>
+					  <execution>
+						  <id>copy-dependencies</id>
+						  <phase>compile</phase>
+						  <goals>
+							  <goal>copy-dependencies</goal>
+						  </goals>
+						  <configuration>
+							  <outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/lib</outputDirectory>
+							  <includeScope>system</includeScope>
+						  </configuration>
+					  </execution>
+				  </executions>
+			  </plugin>
 		  </plugins>
 
 	  </build>
