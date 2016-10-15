@@ -301,6 +301,7 @@ public class XML2OWLMapper {
                     subject.addProperty(prop, object);
                 } else if (node.getFirstChild() != null && node.getFirstChild().getNodeValue() != null) {
                     Property prop = model.createProperty(ONTMALIZER_INSTANCE_BASE_URI + NamingUtil.createPropertyName(dtpprefix, node.getLocalName()));
+
                     Literal value = model.createTypedLiteral(node.getFirstChild().getNodeValue().trim(), objectType.getResource().getURI());
                     subject.addLiteral(prop, value);
                 }
