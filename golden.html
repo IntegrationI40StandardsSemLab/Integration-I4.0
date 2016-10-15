@@ -16,11 +16,11 @@
         <li class="nav-item">
           <a class="nav-link" href="index.html">Overview</a>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="project.html">Project<span class="sr-only">(current)</span></a>
+        <li class="nav-item">
+          <a class="nav-link" href="project.html">Project</a>
         </li>
-		<!--li class="nav-item">
-          <a class="nav-link" href="golden.html">Gold Standard</a>
+		<!--li class="nav-item active">
+          <a class="nav-link" href="golden.html">Gold Standard<span class="sr-only">(current)</span></a>
         </li-->
       </ul>
     </nav>
@@ -28,33 +28,14 @@
     <div class="container marketing">
         <!--  -->
       <form method="POST" id="submitForm" enctype="multipart/form-data" onsubmit="submitFormFunc()" target="responseFrame">
-        <table class="contentTable">
-          <tr>
-            <td>
-              <div id="content1">
-                <span id="descr1">Select .aml/.opcua file to upload:</span>
-                <input type="file" id="file1" name="file1"/>
-              </div>
-            </td>
-            <td>
-              <div id="content2">
-                <span id="descr2">Select .aml/.opcua file to upload:</span>
-                <input type="file" id="file2" name="file2"/>
-              </div>
-            </td>
-          </tr>
-        </table>
-		<br>
-		<div id="downloadArea">
-        </div>
-        <div id="submitButton">
+        <div id="contentArea">
+			<img src="img/gold_upload.gif" class="uploadGif"/>
         </div>
       </form>
       <iframe id="responseFrame"  name="responseFrame">
       </iframe>
       <hr class="featurette-divider">
       <footer>
-	  <a href="golden.html" target="_blank" class="goldHref">(Check the Gold Standard)</a>
         <p class="pull-xs-right">
           <a href="#">
             Back to top
@@ -64,7 +45,7 @@
     </div><!-- /.container -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="js/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="js/js/myfunctions.js"></script>
+    <script src="js/js/goldenfunctions.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script>
     <script src="js/js/bootstrap.min.js"></script>
     <script src="js/js/vendor/holder.min.js"></script> <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
