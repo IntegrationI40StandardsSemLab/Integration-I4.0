@@ -96,14 +96,15 @@ public class RDFTransformer {
 
             TransformerFactory tf = TransformerFactory.newInstance();
             XSLTTraceListener traceListener = new XSLTTraceListener();
-            traceListener.setOutputDestination(new PrintStream("log.txt"));
+            traceListener.setOutputDestination(new PrintStream("/dev/null"));
             tf.setAttribute(FeatureKeys.TRACE_LISTENER, traceListener);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
             ClassLoader classLoader = getClass().getClassLoader();
 
             if ("opcua".equals(schema)){
-                XSD2OWLMapper mapping = new XSD2OWLMapper(new File("src/main/resources/opcua.xsd"));
+
+                XSD2OWLMapper mapping = new XSD2OWLMapper(classLoader.getResourceAsStream("opcua.xsd"));
                 mapping.setObjectPropPrefix("");
                 mapping.setDataTypePropPrefix("has");
                 mapping.convertXSD2OWL();
@@ -137,5 +138,4 @@ public class RDFTransformer {
         }
         return new byte[0];
     }
-
 }
