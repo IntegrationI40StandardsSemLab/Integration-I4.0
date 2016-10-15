@@ -4,6 +4,8 @@ import java.io.*;
 import java.net.URLDecoder;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServlet;
@@ -24,11 +26,13 @@ import org.apache.jena.rdf.model.Model;
 import edu.unibonn.i4matcher.model.FileMeta;
 import edu.unibonn.i4matcher.helpers.*;
 import edu.unibonn.i4matcher.Matcher;
+
 @Controller
 @RequestMapping("/controller")
-public class FileController  extends HttpServlet  {
+public class FileController  { //extends HttpServlet
 	LinkedList<FileMeta> files = new LinkedList<FileMeta>();
 	FileMeta fileMeta = null;
+	private static final Logger logger = Logger.getLogger("FileController");
 	/***************************************************
 	 * URL: /rest/controller/upload/{value}
 	 * upload(): receives files
@@ -45,15 +49,7 @@ public class FileController  extends HttpServlet  {
 		ServletContext servletContext = request.getSession().getServletContext();
 		String path = servletContext.getRealPath("/WEB-INF/classes/");
 
-		System.out.println("App Deployed Directory path: " + this.getServletContext().getRealPath(File.separator));
-		System.out.println("getContextPath(): " + this.getServletContext().getContextPath());
-		System.out.println("Apache Tomcat Server: " + this.getServletContext().getServerInfo());
-		System.out.println("Servlet API version: " + this.getServletContext().getMajorVersion() + "."
-				+ this.getServletContext().getMinorVersion());
-		System.out.println("Tomcat Project Name: " + this.getServletContext().getServletContextName());
-
-
-		System.out.println(request.getRequestHeaders().toString());
+		logger.info(request.getRequestHeaders().toString());
 		//1. build an iterator
 		 Iterator<String> itr =  request.getFileNames();
 		 MultipartFile mpf;
@@ -79,9 +75,11 @@ public class FileController  extends HttpServlet  {
                  fileMeta.setFileType(schema);
 				 //InputStream is = new ByteArrayInputStream(mpf.getBytes());
 
-				 validator.validateAgainstXSD(new ByteArrayInputStream(fileMeta.getBytes()));
+				 if (!validator.validateAgainstXSD(new ByteArrayInputStream(fileMeta.getBytes()))){
+					logger.log(Level.SEVERE, "File "+fileMeta.getFileName()+" not valid");
+				 }
 				 RDFTransformer pecker = new RDFTransformer();
-				 System.out.println("Transformed to AML");
+				 logger.info(fileMeta.getFileName() +"Transformed to AML");
 				 byte[] ttl = pecker.transform(new ByteArrayInputStream(fileMeta.getBytes()), schema);
                  fileMeta.setTtl(ttl);
 				 //is.close();
@@ -95,11 +93,11 @@ public class FileController  extends HttpServlet  {
         Matcher matcher = new Matcher(value);
         try {
             Model model = matcher.match2Files(files);
-			System.out.println("Matched two files");
+			logger.info("Matched two files");
             TripleStoreWriter writer = new TripleStoreWriter();
             String ret = writer.write(model);
             Response resp = new Response(ret);
-            System.out.println(resp.toString());
+			logger.info(resp.toString());
             return resp;
         } catch (IOException e) {
             e.printStackTrace();
