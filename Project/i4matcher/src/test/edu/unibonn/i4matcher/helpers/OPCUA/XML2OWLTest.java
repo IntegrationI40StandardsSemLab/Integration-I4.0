@@ -23,12 +23,12 @@ public class XML2OWLTest {
         mapping.convertXSD2OWL();
 
         // This part converts XML instance to RDF data model.
-        XML2OWLMapper generator = new XML2OWLMapper(new File("src/main/resources/Topology.xml"), mapping);
+        XML2OWLMapper generator = new XML2OWLMapper(new File("src/test/resources/Topology.xml"), mapping);
         generator.convertXML2OWL();
 
         // This part prints the RDF data model to the specified file.
         try {
-            File f = new File("src/test/resources/output/test-instance.ttl");
+            File f = new File("src/test/resources/output/test-opcua.ttl");
             f.getParentFile().mkdirs();
             Writer writer = new FileWriter(f);
             generator.writeModel(writer, "ttl");
