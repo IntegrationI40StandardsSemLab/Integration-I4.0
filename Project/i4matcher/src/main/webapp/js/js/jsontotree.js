@@ -1,4 +1,5 @@
 function drawTree(selectString, treeData, maxDepth, maxWidth) {
+	var start = new Date().getTime();
 	var margin = {top: 20, right: 120, bottom: 20, left: 120},
 		width = maxWidth*400 - margin.right - margin.left,
 		height = maxDepth*50 - margin.top - margin.bottom;
@@ -195,4 +196,6 @@ function drawTree(selectString, treeData, maxDepth, maxWidth) {
 	}
 	update(d);
 	}
+	var elapsed = new Date().getTime() - start;
+    console.log("Function drawTree time "+elapsed);
 }
