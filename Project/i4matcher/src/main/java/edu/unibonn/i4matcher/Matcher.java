@@ -60,7 +60,7 @@ public class Matcher {
         return model;
     }
 
-    private ArrayList<Statement> getStatements (byte[] rdfFile){
+    public ArrayList<Statement> getStatements (byte[] rdfFile){
 
         try(InputStream inputStream = new ByteArrayInputStream(rdfFile)){
 
