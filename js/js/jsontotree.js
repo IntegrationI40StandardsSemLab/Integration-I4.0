@@ -1,4 +1,5 @@
 function drawTree(selectString, treeData, maxDepth, maxWidth) {
+	var start = new Date().getTime();
 	var margin = {top: 20, right: 120, bottom: 20, left: 120},
 		width = maxWidth*400 - margin.right - margin.left,
 		height = maxDepth*50 - margin.top - margin.bottom;
@@ -20,16 +21,17 @@ function drawTree(selectString, treeData, maxDepth, maxWidth) {
 	.append("g")
 		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 	
-	
 	root = treeData[0];
 	root.x0 = height / 2;
 	root.y0 = 0;
 	
 	function collapse(d) {
-		if (d.children.length) {
-		d._children = d.children;
-		d._children.forEach(collapse);
-		d.children = null;
+		if (d.children) {
+			if (d.children.length) {
+				d._children = d.children;
+				d._children.forEach(collapse);
+				d.children = null;
+			}
 		}
 	}
 	
@@ -46,9 +48,9 @@ function drawTree(selectString, treeData, maxDepth, maxWidth) {
 		links = tree.links(nodes);
 	
 	// Normalize for fixed-depth.
-	nodes.forEach(function(d) { d.y = d.depth * 240; });
+	nodes.forEach(function(d) { d.y = d.depth * 300; });
 	
-	// Update the nodes…
+	// Update the nodes
 	var node = svg.selectAll("g.node")
 		.data(nodes, function(d) { return d.ids || (d.ids = ++i); });
 	
@@ -194,4 +196,6 @@ function drawTree(selectString, treeData, maxDepth, maxWidth) {
 	}
 	update(d);
 	}
+	var elapsed = new Date().getTime() - start;
+    console.log("Function drawTree time "+elapsed);
 }

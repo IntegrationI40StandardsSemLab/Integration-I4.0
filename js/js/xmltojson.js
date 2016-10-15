@@ -1,24 +1,39 @@
-function xmltotree(divClass, file, impNodes, impAttr) {
-	var XMLText = readTextFile(file);
-	var tagArray = XMLToArray(XMLText);  // returns an array of all nodes with related info
-	var mapArray = arrayMapping(tagArray, impNodes, impAttr)
-	var JSONText = arrayToJSON(mapArray);  // converts array into a JSON file
-	var maxDepth = 0;  // we evaluate the maxDepth of the tree in order to draw a frame for it
-	var maxWidth = 0;  // we evaluate the maxWidth of the tree in order to draw a frame for it
-	var depthArray = [];
-	for(var i=0; i<=tagArray.length; i++) {
-			depthArray.push(0);
-	}
-	for (var i=0; i<tagArray.length; i++) {
-		if (tagArray[i].depth > maxWidth) {
-			maxWidth = tagArray[i].depth;
+function xmltotree(divClass, file, impNodes, impAttr, ifJSON) {
+	if (ifJSON) {
+		var newText = readTextFile(file);
+		var newObj = JSON.parse(newText);
+		var mapArray = JSONToArray(newObj);
+		var JSONText = arrayToJSON(mapArray);  // converts array into a JSON file
+		if (newObj.results.bindings.length > 4) {
+			drawTree(divClass, JSONText, newObj.results.bindings.length*2, 5);
+			//return "good";
+		} else {
+			drawTree(divClass, JSONText, 6, 5);
+			//return "good";
 		}
-		depthArray[tagArray[i].depth] += 1;
+	} else {
+		var XMLText = readTextFile(file);
+		var tagArray = XMLToArray(XMLText);  // returns an array of all nodes with related info
+		var mapArray = arrayMapping(tagArray, impNodes, impAttr)
+		var JSONText = arrayToJSON(mapArray);  // converts array into a JSON file
+		var maxDepth = 0;  // we evaluate the maxDepth of the tree in order to draw a frame for it
+		var maxWidth = 0;  // we evaluate the maxWidth of the tree in order to draw a frame for it
+		var depthArray = [];
+		for(var i=0; i<=tagArray.length; i++) {
+				depthArray.push(0);
+		}
+		for (var i=0; i<tagArray.length; i++) {
+			if (tagArray[i].depth > maxWidth) {
+				maxWidth = tagArray[i].depth;
+			}
+			depthArray[tagArray[i].depth] += 1;
+		}
+		maxWidth += 1;
+		maxDepth = Math.max.apply(null, depthArray);
+		divClass = "."+divClass;
+		drawTree(divClass, JSONText, maxDepth, maxWidth);
+		//return "good";
 	}
-	maxWidth += 1;
-	maxDepth = Math.max.apply(null, depthArray);
-	divClass = "."+divClass;
-	drawTree(divClass, JSONText, maxDepth, maxWidth);
 }
 
 function readTextFile(file){
@@ -34,6 +49,56 @@ function readTextFile(file){
 	}
 	rawFile.send(null);
 	return allText;
+}
+
+function objInit(id, parent, children, depth, name, tag, type, value, extra) {  // object initializing
+	var obj = new Object();
+	obj.id = id;
+	obj.parent = parent;
+	obj.children = children;
+	obj.depth = depth;	
+	obj.name = name;
+	obj.tag = tag;
+	obj.type = type;
+	obj.value = value;
+	obj.extra = extra;
+	return obj;
+}
+
+function JSONToArray(newObj) {  // creating an array of all objects that needed to be visualized
+	var totalIdNum = 1;
+	var mapArray = [];
+	var rootObj = new Object();
+	rootObj = objInit(totalIdNum, 0, [], 0, 'results', '', '', '', '');
+	mapArray.push(rootObj);
+	for (var i=0; i<newObj.results.bindings.length; i++) {
+		var depth = 1;
+		if (newObj.results.bindings[i].s) {  //subject
+			totalIdNum += 1;
+			rootObj.children.push(totalIdNum);
+			var subjectObj = new Object();
+			subjectObj = objInit(totalIdNum, 1, [], depth, "subject", '', newObj.results.bindings[i].s.type, newObj.results.bindings[i].s.value, '');
+			mapArray.push(subjectObj);
+			depth += 1;
+		}
+		if (newObj.results.bindings[i].p) {  // predicate
+			totalIdNum += 1;
+			subjectObj.children.push(totalIdNum);
+			var predicatObj = new Object();
+			predicatObj = objInit(totalIdNum, totalIdNum-1, [], depth, "predicate", '', newObj.results.bindings[i].p.type, newObj.results.bindings[i].p.value, '');
+			mapArray.push(predicatObj);
+			depth += 1;
+		}
+		if (newObj.results.bindings[i].o) {  // object
+			totalIdNum += 1;
+			predicatObj.children.push(totalIdNum);
+			var objectObj = new Object();
+			objectObj = objInit(totalIdNum, totalIdNum-1, [], depth, "object", '', newObj.results.bindings[i].o.type, newObj.results.bindings[i].o.value, '');
+			mapArray.push(objectObj);
+			depth += 1;
+		}
+	}
+	return mapArray
 }
 			
 function XMLToArray(text) {
@@ -144,7 +209,7 @@ function XMLToArray(text) {
 	return tagArray;
 }
 
-function arrayMapping(tagArray, impNodes, impAttr) {
+function arrayMapping(tagArray, impNodes, impAttr) {  // parsing all the information inside the array
 	var mapArray = attrTrans(tagArray, impAttr);
 	if (impNodes.length) {
 		var extra = new Object();
@@ -191,7 +256,7 @@ function arrayMapping(tagArray, impNodes, impAttr) {
 	return mapArray;
 }
 
-function attrTrans(tagArray, impAttr) {
+function attrTrans(tagArray, impAttr) {  // dealing with attributes of the objects
 	for (var i=0; i<tagArray.length; i++) {
 		var tagString = tagArray[i].tag;
 		var type = '';
@@ -226,7 +291,7 @@ function attrTrans(tagArray, impAttr) {
 	return tagArray;
 }
 
-function arrayToJSON(tagArray) {
+function arrayToJSON(tagArray) {  // converting array to json type
 	var JSONText = [];
 	var root = new Object();				
 	root = objToJSON(tagArray, 0, false);
