@@ -91,10 +91,10 @@ public class RDFTransformer {
             XSLTTraceListener traceListener = new XSLTTraceListener();
             traceListener.setOutputDestination(new PrintStream("log.txt"));
             tf.setAttribute(FeatureKeys.TRACE_LISTENER, traceListener);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
             ClassLoader classLoader = getClass().getClassLoader();
 //            System.out.println(classLoader.getResource(schema + "..turtle.xsl"));
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
             if ("opcua".equals(schema)){
                 XSD2OWLMapper mapping = new XSD2OWLMapper(new File("src/main/resources/opcua.xsd"));
                 mapping.setObjectPropPrefix("");
