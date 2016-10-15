@@ -10,6 +10,8 @@ import net.sf.saxon.Configuration;
 import net.sf.saxon.FeatureKeys;
 import net.sf.saxon.om.SequenceIterator;
 import net.sf.saxon.trace.XSLTTraceListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
@@ -23,6 +25,9 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 
 public class RDFTransformer {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(RDFTransformer.class);
+
     static {
         // use Saxon as XSLT transformer
         System.setProperty("java.xml.transform.TransformerFactory",
@@ -83,8 +88,10 @@ public class RDFTransformer {
             if (i2 != null) i2.close();
         }
     }
+
+
     public byte[] transform(InputStream aml, String schema) {
-        //TODO: rework to try-with-resources
+
         try {
 
             TransformerFactory tf = TransformerFactory.newInstance();
@@ -94,7 +101,7 @@ public class RDFTransformer {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
             ClassLoader classLoader = getClass().getClassLoader();
-//            System.out.println(classLoader.getResource(schema + "..turtle.xsl"));
+
             if ("opcua".equals(schema)){
                 XSD2OWLMapper mapping = new XSD2OWLMapper(new File("src/main/resources/opcua.xsd"));
                 mapping.setObjectPropPrefix("");
@@ -129,21 +136,6 @@ public class RDFTransformer {
             e.printStackTrace();
         }
         return new byte[0];
-    }
-
-    public static void main(String[] args) throws IOException {
-        InputStream aml1 = new FileInputStream("C:/Users/alink_000/Desktop/Uni Bonn/Lab semantic/gold standard/2.aml");
-        //URL res = ClassLoader.getSystemResource("automationML" + "..turtle.xsl");
-        //System.out.println(aml1.read());
-        RDFTransformer RDFTransformer = new RDFTransformer();
-        byte[] out = RDFTransformer.transform(aml1, "automationML");
-        FileOutputStream fos = new FileOutputStream("out.ttl");
-        fos.write(out);
-
-        System.out.print("oke");
-        //ClassLoader classLoader = getClass().getClassLoader();
-
-
     }
 
 }
