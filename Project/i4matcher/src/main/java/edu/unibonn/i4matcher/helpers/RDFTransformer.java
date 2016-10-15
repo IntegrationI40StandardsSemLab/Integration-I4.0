@@ -103,7 +103,8 @@ public class RDFTransformer {
             ClassLoader classLoader = getClass().getClassLoader();
 
             if ("opcua".equals(schema)){
-                XSD2OWLMapper mapping = new XSD2OWLMapper(new File("src/main/resources/opcua.xsd"));
+
+                XSD2OWLMapper mapping = new XSD2OWLMapper(classLoader.getResourceAsStream("opcua.xsd"));
                 mapping.setObjectPropPrefix("");
                 mapping.setDataTypePropPrefix("has");
                 mapping.convertXSD2OWL();
