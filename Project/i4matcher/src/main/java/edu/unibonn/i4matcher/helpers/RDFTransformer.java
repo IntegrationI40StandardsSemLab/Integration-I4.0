@@ -95,7 +95,7 @@ public class RDFTransformer {
 
             ClassLoader classLoader = getClass().getClassLoader();
 //            System.out.println(classLoader.getResource(schema + "..turtle.xsl"));
-            if (schema =="opcua"){
+            if ("opcua".equals(schema)){
                 XSD2OWLMapper mapping = new XSD2OWLMapper(new File("src/main/resources/opcua.xsd"));
                 mapping.setObjectPropPrefix("");
                 mapping.setDataTypePropPrefix("has");
@@ -107,7 +107,7 @@ public class RDFTransformer {
                 generator.writeModel(baos,"ttl");
 
             }
-            else if (schema == "automationML"){
+            else if ("automationML".equals(schema )){
                 InputStream xsl = classLoader.getResource(schema + "..turtle.xsl").openStream();
                 Transformer transformer = tf.newTransformer(new StreamSource(xsl));
                 System.out.print("I am healthy");
