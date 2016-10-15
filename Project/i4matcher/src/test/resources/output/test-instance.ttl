@@ -1,0 +1,14 @@
+@base          <https://w3id.org/i40/instance#> .
+@prefix :      <https://w3id.org/i40/instance#> .
+@prefix UANodeSet.xsd: <http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dtype: <https://w3id.org/i40#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+
+:UANodeSet1  a          UANodeSet.xsd:UANodeSet ;
+        :NamespaceUris  :UriTable1 .
+
+:UriTable1  a    UANodeSet.xsd:UriTable ;
+        :hasUri  "http://www.iosb.fraunhofer.de/Topology.aml" , "http://opcfoundation.org/UA/AML/" .
