@@ -117,7 +117,7 @@ public class RDFTransformer {
             else if ("automationML".equals(schema )){
                 InputStream xsl = classLoader.getResource(schema + "..turtle.xsl").openStream();
                 Transformer transformer = tf.newTransformer(new StreamSource(xsl));
-                System.out.print("I am healthy");
+                LOGGER.info("Works");
                 StreamSource xmlSource = new StreamSource(aml);
                 transformer.transform(xmlSource, new StreamResult(baos));
                 xsl.close();
