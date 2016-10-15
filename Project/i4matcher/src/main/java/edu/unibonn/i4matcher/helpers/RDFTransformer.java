@@ -3,6 +3,8 @@
  */
 package edu.unibonn.i4matcher.helpers;
 
+import edu.unibonn.i4matcher.helpers.OPCUA.XML2OWLMapper;
+import edu.unibonn.i4matcher.helpers.OPCUA.XSD2OWLMapper;
 import net.sf.saxon.CollectionURIResolver;
 import net.sf.saxon.Configuration;
 import net.sf.saxon.FeatureKeys;
@@ -89,19 +91,32 @@ public class RDFTransformer {
             XSLTTraceListener traceListener = new XSLTTraceListener();
             traceListener.setOutputDestination(new PrintStream("log.txt"));
             tf.setAttribute(FeatureKeys.TRACE_LISTENER, traceListener);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
             ClassLoader classLoader = getClass().getClassLoader();
 //            System.out.println(classLoader.getResource(schema + "..turtle.xsl"));
-            InputStream xsl = classLoader.getResource(schema + "..turtle.xsl").openStream();
-            Transformer transformer = tf.newTransformer(new StreamSource(xsl));
-            System.out.print("I am healthy");
+            if (schema =="opcua"){
+                XSD2OWLMapper mapping = new XSD2OWLMapper(new File("src/main/resources/opcua.xsd"));
+                mapping.setObjectPropPrefix("");
+                mapping.setDataTypePropPrefix("has");
+                mapping.convertXSD2OWL();
 
+                // This part converts XML instance to RDF data model.
+                XML2OWLMapper generator = new XML2OWLMapper(aml, mapping);
+                generator.convertXML2OWL();
+                generator.writeModel(baos,"ttl");
 
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            StreamSource xmlSource = new StreamSource(aml);
-            transformer.transform(xmlSource, new StreamResult(baos));
+            }
+            else if (schema == "automationML"){
+                InputStream xsl = classLoader.getResource(schema + "..turtle.xsl").openStream();
+                Transformer transformer = tf.newTransformer(new StreamSource(xsl));
+                System.out.print("I am healthy");
+                StreamSource xmlSource = new StreamSource(aml);
+                transformer.transform(xmlSource, new StreamResult(baos));
+                xsl.close();
+            }
+
             byte[] formattedOutput = baos.toByteArray();
-            xsl.close();
             baos.close();
             if (aml != null) {
                 aml.close();
