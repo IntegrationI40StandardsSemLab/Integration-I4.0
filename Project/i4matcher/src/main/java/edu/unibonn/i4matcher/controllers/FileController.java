@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 //import javax.json;
 
@@ -25,7 +26,7 @@ import edu.unibonn.i4matcher.helpers.*;
 import edu.unibonn.i4matcher.Matcher;
 @Controller
 @RequestMapping("/controller")
-public class FileController {
+public class FileController  extends HttpServlet {
 	LinkedList<FileMeta> files = new LinkedList<FileMeta>();
 	FileMeta fileMeta = null;
 	/***************************************************
@@ -42,9 +43,16 @@ public class FileController {
 			HttpServletResponse response,
 			@PathVariable String value) {
 		ServletContext servletContext = request.getSession().getServletContext();
-//		String path = servletContext.getRealPath("/WEB-INF/classes/");
-		String path = "/home/phil/workspace/Integration-I4.0/Project/i4matcher/target/classes/";
-		System.out.println(path);
+		String path = servletContext.getRealPath("/WEB-INF/classes/");
+
+		System.out.println("App Deployed Directory path: " + this.getServletContext().getRealPath(File.separator));
+		System.out.println("getContextPath(): " + this.getServletContext().getContextPath());
+		System.out.println("Apache Tomcat Server: " + this.getServletContext().getServerInfo());
+		System.out.println("Servlet API version: " + this.getServletContext().getMajorVersion() + "."
+				+ this.getServletContext().getMinorVersion());
+		System.out.println("Tomcat Project Name: " + this.getServletContext().getServletContextName());
+
+
 		System.out.println(request.getRequestHeaders().toString());
 		//1. build an iterator
 		 Iterator<String> itr =  request.getFileNames();
