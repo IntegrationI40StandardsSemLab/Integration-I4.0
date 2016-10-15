@@ -3,17 +3,17 @@
  */
 package edu.unibonn.i4matcher.helpers;
 
+import edu.unibonn.i4matcher.helpers.OPCUA.XML2OWLMapper;
+import edu.unibonn.i4matcher.helpers.OPCUA.XSD2OWLMapper;
 import net.sf.saxon.CollectionURIResolver;
 import net.sf.saxon.Configuration;
 import net.sf.saxon.FeatureKeys;
 import net.sf.saxon.om.SequenceIterator;
 import net.sf.saxon.trace.XSLTTraceListener;
-import org.w3c.dom.Document;
 
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.xpath.XPathConstants;
@@ -23,7 +23,6 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 
 public class RDFTransformer {
-    private String path;
     static {
         // use Saxon as XSLT transformer
         System.setProperty("java.xml.transform.TransformerFactory",
@@ -51,8 +50,6 @@ public class RDFTransformer {
                 });
         factory.setAttribute(FeatureKeys.CONFIGURATION, saxonConfiguration);
     }
-    public RDFTransformer(String path){this.path = path;}
-
     private static boolean isEqual(InputStream i1, InputStream i2)
             throws IOException {
 
@@ -92,21 +89,32 @@ public class RDFTransformer {
 
             TransformerFactory tf = TransformerFactory.newInstance();
             XSLTTraceListener traceListener = new XSLTTraceListener();
-            traceListener.setOutputDestination(new PrintStream("/dev/null"));
+            traceListener.setOutputDestination(new PrintStream("log.txt"));
             tf.setAttribute(FeatureKeys.TRACE_LISTENER, traceListener);
 
             ClassLoader classLoader = getClass().getClassLoader();
-            InputStream xsl = classLoader.getResource(schema + "..turtle.xsl").openStream();
 //            System.out.println(classLoader.getResource(schema + "..turtle.xsl"));
-            SchemaProvider schemaProvider = new SchemaProvider( schema, path);
-            //Document xsl = schemaProvider.getDoc();
-            Transformer transformer = tf.newTransformer(new StreamSource(xsl));
-            System.out.print("I am healthy");
+            if (schema =="opcua"){
+                XSD2OWLMapper mapping = new XSD2OWLMapper(new File("src/main/resources/opcua.xsd"));
+                mapping.setObjectPropPrefix("");
+                mapping.setDataTypePropPrefix("has");
+                mapping.convertXSD2OWL();
 
+                // This part converts XML instance to RDF data model.
+                XML2OWLMapper generator = new XML2OWLMapper(aml, mapping);
+                generator.convertXML2OWL();
+                generator.writeModel(baos,"ttl");
 
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            StreamSource xmlSource = new StreamSource(aml);
-            transformer.transform(xmlSource, new StreamResult(baos));
+            }
+            else if (schema == "automationML"){
+                InputStream xsl = classLoader.getResource(schema + "..turtle.xsl").openStream();
+                Transformer transformer = tf.newTransformer(new StreamSource(xsl));
+                System.out.print("I am healthy");
+                StreamSource xmlSource = new StreamSource(aml);
+                transformer.transform(xmlSource, new StreamResult(baos));
+                xsl.close();
+            }
+
             byte[] formattedOutput = baos.toByteArray();
             baos.close();
             if (aml != null) {
@@ -121,7 +129,7 @@ public class RDFTransformer {
         }
         return new byte[0];
     }
-/*
+
     public static void main(String[] args) throws IOException {
         InputStream aml1 = new FileInputStream("C:/Users/alink_000/Desktop/Uni Bonn/Lab semantic/gold standard/2.aml");
         //URL res = ClassLoader.getSystemResource("automationML" + "..turtle.xsl");
@@ -134,7 +142,7 @@ public class RDFTransformer {
         System.out.print("oke");
         //ClassLoader classLoader = getClass().getClassLoader();
 
+
     }
-*/
 
 }
