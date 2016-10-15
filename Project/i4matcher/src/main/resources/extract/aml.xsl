@@ -25,7 +25,7 @@
 <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
 <!ENTITY dc "http://purl.org/dc/elements/1.1/">
-<!ENTITY aml "https://w3id.org/i40/aml/">
+<!ENTITY aml "https://w3id.org/i40/instance/">
 <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
 <!ENTITY schema "http://schema.org/">
 ]>

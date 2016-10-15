@@ -1,0 +1,238 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:dtype="http://www.srdc.com.tr/ontmalizer#"
+    xmlns="http://www.srdc.com.tr/ontmalizer/instance#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:UANodeSet.xsd="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+  xml:base="http://www.srdc.com.tr/ontmalizer/instance">
+  <UANodeSet.xsd:UANodeSet rdf:ID="INS8887058_UANodeSet_1">
+    <UANodeSet.xsd:Aliases>
+      <UANodeSet.xsd:AliasTable rdf:ID="INS8887058_AliasTable_1">
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_5">
+            <UANodeSet.xsd:textContent>i=5</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>UInt16</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_9">
+            <UANodeSet.xsd:textContent>i=9</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>UInt64</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_1">
+            <UANodeSet.xsd:textContent>i=1</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>Boolean</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_27">
+            <UANodeSet.xsd:textContent>i=46</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>HasProperty</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_18">
+            <UANodeSet.xsd:textContent>i=18</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>ExpandedNodeId</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_6">
+            <UANodeSet.xsd:textContent>i=6</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>Int32</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_2">
+            <UANodeSet.xsd:textContent>i=2</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>SByte</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_28">
+            <UANodeSet.xsd:textContent>i=35</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>Organizes</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_19">
+            <UANodeSet.xsd:textContent>i=20</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>QualifiedName</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_7">
+            <UANodeSet.xsd:textContent>i=7</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>UInt32</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_3">
+            <UANodeSet.xsd:textContent>i=3</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>Byte</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_29">
+            <UANodeSet.xsd:textContent>i=36</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>HasEventSource</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_8">
+            <UANodeSet.xsd:textContent>i=8</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>Int64</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_16">
+            <UANodeSet.xsd:textContent>i=16</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>XmlElement</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_4">
+            <UANodeSet.xsd:textContent>i=4</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>Int16</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_30">
+            <UANodeSet.xsd:textContent>i=48</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>HasNotifier</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_34">
+            <UANodeSet.xsd:textContent>i=38</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>HasEncoding</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_17">
+            <UANodeSet.xsd:textContent>i=17</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>NodeId</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_31">
+            <UANodeSet.xsd:textContent>i=45</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>HasSubtype</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_23">
+            <UANodeSet.xsd:textContent>i=26</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>Number</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_35">
+            <UANodeSet.xsd:textContent>i=39</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>HasDescription</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_20">
+            <UANodeSet.xsd:textContent>i=21</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>LocalizedText</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_32">
+            <UANodeSet.xsd:textContent>i=40</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>HasTypeDefinition</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_24">
+            <UANodeSet.xsd:textContent>i=27</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>Integer</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_36">
+            <UANodeSet.xsd:textContent>i=290</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>Duration</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_21">
+            <UANodeSet.xsd:textContent>i=19</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>StatusCode</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_22">
+            <UANodeSet.xsd:textContent>i=22</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>Structure</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_33">
+            <UANodeSet.xsd:textContent>i=37</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>HasModellingRule</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_25">
+            <UANodeSet.xsd:textContent>i=28</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>UInteger</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_26">
+            <UANodeSet.xsd:textContent>i=47</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>HasComponent</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_12">
+            <UANodeSet.xsd:textContent>i=13</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>DateTime</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_10">
+            <UANodeSet.xsd:textContent>i=10</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>Float</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_13">
+            <UANodeSet.xsd:textContent>i=12</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>String</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_14">
+            <UANodeSet.xsd:textContent>i=15</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>ByteString</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_11">
+            <UANodeSet.xsd:textContent>i=11</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>Double</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+        <UANodeSet.xsd:Alias>
+          <UANodeSet.xsd:NodeIdAlias rdf:ID="INS8887058_NodeIdAlias_15">
+            <UANodeSet.xsd:textContent>i=14</UANodeSet.xsd:textContent>
+            <UANodeSet.xsd:Alias>Guid</UANodeSet.xsd:Alias>
+          </UANodeSet.xsd:NodeIdAlias>
+        </UANodeSet.xsd:Alias>
+      </UANodeSet.xsd:AliasTable>
+    </UANodeSet.xsd:Aliases>
+    <UANodeSet.xsd:NamespaceUris>
+      <UANodeSet.xsd:UriTable rdf:ID="INS8887058_UriTable_1">
+        <UANodeSet.xsd:Uri>http://www.iosb.fraunhofer.de/Topology.aml</UANodeSet.xsd:Uri>
+        <UANodeSet.xsd:Uri>http://opcfoundation.org/UA/AML/</UANodeSet.xsd:Uri>
+      </UANodeSet.xsd:UriTable>
+    </UANodeSet.xsd:NamespaceUris>
+  </UANodeSet.xsd:UANodeSet>
+</rdf:RDF>
