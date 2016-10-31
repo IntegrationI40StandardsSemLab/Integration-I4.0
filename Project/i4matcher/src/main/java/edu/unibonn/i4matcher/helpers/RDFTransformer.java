@@ -126,6 +126,7 @@ public class RDFTransformer {
 
             byte[] formattedOutput = baos.toByteArray();
             baos.close();
+            baos.flush();
             if (aml != null) {
                 aml.close();
             }

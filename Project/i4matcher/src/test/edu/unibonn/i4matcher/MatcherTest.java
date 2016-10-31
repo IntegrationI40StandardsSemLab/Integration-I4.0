@@ -26,11 +26,11 @@ public class MatcherTest {
         Matcher matcher = new Matcher(matchLevel);
         RDFTransformer rdfTransformer = new RDFTransformer();
         LinkedList<FileInputStream> files = new LinkedList<>();
-        files.add(new FileInputStream("src/test/resources/Topology - Copy.xml"));
-        files.add(new FileInputStream("src/test/resources/Topology.xml"));
+        files.add(new FileInputStream("src/test/resources/1.aml")); //Topology - Copy
+        files.add(new FileInputStream("src/test/resources/2.aml")); //Topology
 
-        byte[] rdfFile1 = rdfTransformer.transform(files.get(0), "opcua");
-        byte[] rdfFile2 = rdfTransformer.transform(files.get(1), "opcua");
+        byte[] rdfFile1 = rdfTransformer.transform(files.get(0), "automationML");//opcua
+        byte[] rdfFile2 = rdfTransformer.transform(files.get(1), "automationML");//opcua
 
 
         ArrayList<Statement> fileMap1 = matcher.getStatements(rdfFile1);

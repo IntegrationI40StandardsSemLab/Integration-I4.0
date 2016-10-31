@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 //import javax.json;
 
 import edu.unibonn.i4matcher.SparqlQuery;
+import org.apache.commons.io.FileUtils;
 import org.apache.jena.query.QueryParseException;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
@@ -30,8 +31,6 @@ import edu.unibonn.i4matcher.Matcher;
 @Controller
 @RequestMapping("/controller")
 public class FileController  { //extends HttpServlet
-	LinkedList<FileMeta> files = new LinkedList<FileMeta>();
-	FileMeta fileMeta = null;
 	private static final Logger logger = Logger.getLogger("FileController");
 	/***************************************************
 	 * URL: /rest/controller/upload/{value}
@@ -39,15 +38,17 @@ public class FileController  { //extends HttpServlet
 	 * @param request : MultipartHttpServletRequest auto passed
 	 * @param response : HttpServletResponse auto passed
 	 * @param value: String type of matching
-	 * @return LinkedList<FileMeta> as json format
+	 * @return Response as json format
 	 ****************************************************/
 	@RequestMapping(value="/upload/{value}", method = RequestMethod.POST, produces = "application/json")
 	public @ResponseBody Response upload(
 			MultipartHttpServletRequest request,
 			HttpServletResponse response,
 			@PathVariable String value) {
-		ServletContext servletContext = request.getSession().getServletContext();
-		String path = servletContext.getRealPath("/WEB-INF/classes/");
+//		ServletContext servletContext = request.getSession().getServletContext();
+//		String path = servletContext.getRealPath("/WEB-INF/classes/");
+		LinkedList<FileMeta> files = new LinkedList<FileMeta>();
+		FileMeta fileMeta = null;
 
 		logger.info(request.getRequestHeaders().toString());
 		//1. build an iterator
@@ -79,8 +80,9 @@ public class FileController  { //extends HttpServlet
 					logger.log(Level.SEVERE, "File "+fileMeta.getFileName()+" not valid");
 				 }
 				 RDFTransformer pecker = new RDFTransformer();
-				 logger.info(fileMeta.getFileName() +"Transformed to AML");
+				 logger.info(fileMeta.getFileName() +"Transformed to RDF");
 				 byte[] ttl = pecker.transform(new ByteArrayInputStream(fileMeta.getBytes()), schema);
+				 //FileUtils.writeByteArrayToFile(new File(fileMeta.getFileName()+"txt"), ttl);
                  fileMeta.setTtl(ttl);
 				 //is.close();
 			 } catch (Exception ex){
@@ -90,12 +92,13 @@ public class FileController  { //extends HttpServlet
 			 files.add(fileMeta);
 			 
 		 }
-        Matcher matcher = new Matcher(value);
         try {
-            Model model = matcher.match2Files(files);
+			Matcher matcher = new Matcher(value);
+			Model model = matcher.match2Files(files);
 			logger.info("Matched two files");
-            TripleStoreWriter writer = new TripleStoreWriter();
-            String ret = writer.write(model);
+			TripleStoreWriter writer = new TripleStoreWriter();
+			String ret = writer.write(model);
+
             Response resp = new Response(ret);
 			logger.info(resp.toString());
             return resp;
