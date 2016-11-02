@@ -96,7 +96,7 @@ public class RDFTransformer {
 
             TransformerFactory tf = TransformerFactory.newInstance();
             XSLTTraceListener traceListener = new XSLTTraceListener();
-            traceListener.setOutputDestination(new PrintStream("/dev/null"));
+            traceListener.setOutputDestination(new PrintStream("nul"));
             tf.setAttribute(FeatureKeys.TRACE_LISTENER, traceListener);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
